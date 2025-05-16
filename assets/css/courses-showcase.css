@@ -296,7 +296,7 @@
     }
     
     .courses-header {
-        flex-direction: column;
+        /* flex-direction: column; */
     }
     
     .courses-header-left {
@@ -418,4 +418,11 @@
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
     }
+}
+
+@media screen and (max-width: 668px){
+    .courses-showcase-container{ padding: 20px!important; }
+    .courses-header-left{ max-width: 270px; }
+    .badge-circle-button-container .circle-button{ width: 80px; height: 80px; }
+    .badge-circle-button-container .circle-button .text-ring{ width: 150px; height: 150px; }
 }

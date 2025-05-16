@@ -373,5 +373,16 @@
     }
 }
 
+@media screen and (max-width: 668px){
+    .background-top-right-mask-container .image-card{
+        mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
+        -ms-mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
+        -moz-mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
+        -webkit-mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
+        -o-mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
+    }
+    .consultancy-grid-content{ margin-bottom: 60px!important }
+}
+
 
 .consultancy-end-line{ position: absolute; bottom: 0; left: -1%; width: 102%; display: block; }

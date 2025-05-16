@@ -535,7 +535,7 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
     .team-title,
     .course-title {
@@ -549,6 +549,15 @@
     .testimonial-item {
         flex: 0 0 300px;
     }
+    .partner-card__content{ padding: 10px 22px!important; }
+}
+
+@media(max-width: 668px){
+    .partner-card{ display: block; }
+    .partner-card__logo{ display: block; width: 100%; border-radius: 16px 16px 0 0; }
+    .partner-card__content{ border-radius: 0 0 16px 16px; }
+    .flowthermolab-team-container{ padding: 20px!important; }
+    .testimonials-section{ margin: 0!important; padding: 20px 0!important; }
 }
 
 @media (max-width: 479px) {
@@ -564,5 +573,8 @@
     .team-description,
     .course-description {
         font-size: 14px;
+    }
+    .testimonial-item {
+        margin: 0;
     }
 }

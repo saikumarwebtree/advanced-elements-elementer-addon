@@ -151,7 +151,7 @@
 /* Responsive Styles */
 @media (max-width: 1024px) {
     .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr)!important;
     }
     
     .statistics-grid {
@@ -182,8 +182,13 @@
     }
 }
 
+@media screen and (max-width: 668px){
+    .cloud-computing-content{ margin: 0 auto 60px!important; }
+}
+
 @media (max-width: 479px) {
     .statistics-grid {
         grid-template-columns: 1fr;
     }
+    .why-choose-container{ padding: 20px!important; }
 }

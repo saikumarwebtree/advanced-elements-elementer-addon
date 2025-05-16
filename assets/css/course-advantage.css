@@ -119,8 +119,9 @@
 }
 
 @media (max-width: 480px) {
+    .advantage-content{ margin: 0 auto 70px }
     .advantage-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr)!important;
     }
     
     .advantage-title {

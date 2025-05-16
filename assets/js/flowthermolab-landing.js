@@ -31,8 +31,8 @@
 
     $('.testimonials-slider').slick({
         centerMode: true,
-        centerPadding: '480px',  // Increased padding to show partial slides
-        slidesToShow: 1,         // Show only one full slide
+        centerPadding: '480px',  // For screens 1440px and above
+        slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
         dots: false,
@@ -45,27 +45,33 @@
         nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 1500,  // This targets screens BELOW 1440px
                 settings: {
-                    centerPadding: '100px'
+                    centerPadding: '320px'  // For screens between 1200px and 1440px
                 }
             },
             {
-                breakpoint: 992,
+                breakpoint: 1200,  // This targets screens BELOW 1200px
                 settings: {
-                    centerPadding: '80px'
+                    centerPadding: '100px'  // For screens between 992px and 1200px
                 }
             },
             {
-                breakpoint: 768,
+                breakpoint: 992,  // This targets screens BELOW 992px
                 settings: {
-                    centerPadding: '40px'
+                    centerPadding: '80px'  // For screens between 768px and 992px
                 }
             },
             {
-                breakpoint: 576,
+                breakpoint: 768,  // This targets screens BELOW 768px
                 settings: {
-                    centerPadding: '20px'
+                    centerPadding: '40px'  // For screens between 576px and 768px
+                }
+            },
+            {
+                breakpoint: 576,  // This targets screens BELOW 576px
+                settings: {
+                    centerPadding: '10px'  // For screens below 576px
                 }
             }
         ]
