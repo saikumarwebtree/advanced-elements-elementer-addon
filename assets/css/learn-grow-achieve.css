@@ -1,0 +1,114 @@
+/* Learn Grow Achieve Steps */
+.step {
+    position: relative;
+    padding: 80px 90px 80px;
+}
+
+.step .title {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.step .description {
+    position: relative;
+}
+
+.step .description p {
+    font-size: 20px;
+    font-weight: 200;
+    position: relative;
+    z-index: 1;
+}
+
+.step .description span {
+    font-size: 151px;
+    position: absolute;
+    right: 25%;
+    top: 0;
+    transform: translateY(-70%);
+    line-height: 1;
+    z-index: 0;
+    font-weight: bold;
+    background: linear-gradient(180deg, rgba(27, 50, 95, 1), rgba(27, 50, 95, 0.8), rgba(27, 50, 95, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.step .icon {
+    background: #ffffff;
+    display: inline-block;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 80px;
+    height: 80px;
+}
+
+.step .icon img {
+    object-fit: cover;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+}
+
+/* Learn Grow Achieve Section */
+.learn-grow-achieve {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.learn-grow-achieve .sine-wave {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 101%;
+    left: -0.5%;
+    filter: drop-shadow(0px 40px 5px rgba(0,0,0,0.2));
+}
+
+.learn-grow-achieve .sine-wave.no-shadow {
+    filter: none;
+}
+
+.learn-grow-achieve .row {
+    display: flex;
+    position: relative;
+    z-index: 1;
+}
+
+.learn-grow-achieve .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* General */
+.mb-30 {
+    margin-bottom: 50px!important;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .learn-grow-achieve .col-lg-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .learn-grow-achieve .row {
+        flex-direction: column;
+    }
+    
+    .step {
+        padding: 40px 30px;
+    }
+    
+    .learn-grow-achieve .sine-wave {
+        opacity: 0.5;
+    }
+}

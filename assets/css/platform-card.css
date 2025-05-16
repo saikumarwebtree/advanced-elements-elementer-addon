@@ -1,0 +1,111 @@
+.platform-card-container {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.platform-card-container:hover {
+    filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.35));
+}
+
+.platform-card-container .platform-card {
+    position: relative;
+    padding: 30px;
+    border-radius: 30px;
+    /* background: #272727!important; */
+    border-color: none!important;
+    mask-image: radial-gradient(circle at calc(100% - -36px) calc(100% - -25px), transparent 55px, black 56px);
+    -webkit-mask-image: radial-gradient(circle at calc(100% - -36px) calc(100% - -25px), transparent 55px, black 56px)
+}
+
+.platform-card-container:hover .button-container {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: all 0.3s ease, mask-image 0.3s ease, -webkit-mask-image 0.3s ease;
+}
+
+.platform-card-container .platform-card .icon {
+    background: linear-gradient(90deg, #2d7bcb, #00a2fa)!important;
+    display: inline-block;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+}
+
+.platform-card-container .platform-card .icon img {
+    object-fit: cover;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+}
+
+.platform-card-container .platform-card .title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.platform-card-container .platform-card .description {
+    font-size: 18px;
+    margin-bottom: calc(50px + 30px);
+}
+
+.platform-card-container .button-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.platform-card-container .button-container a {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: block;
+    line-height: 90px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #2d7bcb, #00a2fa);
+    transform: scale(0.98);
+    transition: all 0.3s ease;
+}
+
+.platform-card-container:hover {
+    transform: translateY(-5px);
+}
+
+.platform-card-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.platform-card-container:hover::before {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.25)
+}
+
+.platform-card-container:hover .platform-card {
+    background: linear-gradient(100deg, rgba(38,57,110,1), rgba(32,35,41,1))!important;
+    mask-image: radial-gradient(circle at calc(100% - 45px) calc(100% - 45px), transparent 55px, black 56px);
+    -webkit-mask-image: radial-gradient(circle at calc(100% - 45px) calc(100% - 45px), transparent 55px, black 56px);
+}
+
+.platform-card-container:hover .button-container {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}

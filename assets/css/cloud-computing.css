@@ -1,0 +1,215 @@
+/* Cloud Computing Container */
+.cloud-computing-container {
+    padding: 80px 20px;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.cloud-computing-content {
+    max-width: 1200px;
+    margin: 0 auto 180px;
+}
+
+/* Hero Section */
+.cloud-hero-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+.cloud-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.cloud-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 10px;
+    color: #4a89dc;
+    background: linear-gradient(90deg, #4E7FCE, #4FAAFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.cloud-title {
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: #ffffff;
+}
+
+.cloud-description {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 0 30px;
+    color: #cccccc;
+    max-width: 600px;
+}
+
+.cloud-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.cloud-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.cloud-button i,
+.cloud-button svg {
+    margin-left: 8px;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.cloud-button-1 {
+    background-color: #4a89dc;
+    color: #ffffff;
+    border: 2px solid #4a89dc;
+}
+
+.cloud-button-1:hover {
+    background-color: #3a6db0;
+    border-color: #3a6db0;
+}
+
+.cloud-button-2 {
+    background-color: transparent;
+    color: #4a89dc;
+    border: 2px solid #4a89dc;
+}
+
+.cloud-button-2:hover {
+    background-color: #4a89dc;
+    color: #ffffff;
+}
+
+/* Illustration */
+.cloud-illustration {
+    flex: 1;
+    text-align: center;
+    min-width: 300px;
+}
+
+.cloud-illustration img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Features Grid */
+.features-section {
+    margin-top: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.feature-item {
+    background-color: transparent!important;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+}
+
+.computing-feature-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(87, 147, 206, 0.15);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 30px!important;
+    box-shadow: 2px 2px 10px 5px rgba(11,11,11,0.015);
+}
+
+.computing-feature-icon i,
+.computing-feature-icon svg {
+    width: 32px!important;
+    height: 32px!important;
+}
+
+.computing-feature-title {
+    font-size: 20px;
+    text-align: left!important;
+    margin: 0 0 10px;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.computing-feature-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    color: #bbbbbb;
+    text-align: left;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .cloud-hero-section {
+        flex-direction: column;
+    }
+    
+    .cloud-info {
+        text-align: center;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+    
+    .cloud-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .cloud-buttons {
+        justify-content: center;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .cloud-title {
+        font-size: 32px;
+    }
+    
+    .cloud-description {
+        font-size: 16px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cloud-computing-end-line{position: absolute; bottom: 0; left: -1%; width: 102%; display: block;}

@@ -1,0 +1,25 @@
+/* Common styles for all widgets */
+.mb-30 {
+    margin-bottom: 50px !important;
+}
+
+/* Before animation is triggered */
+.animate-on-scroll {
+    opacity: 0;
+    visibility: hidden;
+    will-change: opacity, transform;
+}
+
+/* After animation is triggered (JS adds these) */
+.animate__animated {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.elementor-editor-active .animate-on-scroll {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}

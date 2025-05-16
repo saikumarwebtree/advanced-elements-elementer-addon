@@ -1,0 +1,131 @@
+/* Course Advantage Container */
+.advantage-container {
+    padding: 60px 20px;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;;
+}
+
+.advantage-content {
+    max-width: 1200px;
+    margin: 0 auto 150px;
+}
+
+/* Header Styles */
+.advantage-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.advantage-title {
+    color: #ffffff;
+    font-size: 42px;
+    margin: 0 0 15px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.advantage-description {
+    color: #cccccc;
+    font-size: 22px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center!important;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 1px;
+    font-weight: 400;;
+}
+
+/* Advantage Grid */
+.advantage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+/* Advantage Item */
+.advantage-item {
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.advantage-item:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+}
+
+/* Icon Styles */
+.advantage-icon {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(87, 147, 206, 0.15);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    box-shadow: 2px 2px 10px 5px rgba(11,11,11,0.015);
+    
+}
+
+.advantage-icon i {
+    color: #4a89dc;
+    font-size: 24px;
+}
+
+.advantage-icon svg {
+    width: 48px;
+    height: 48px;
+    fill: #4a89dc;
+}
+
+/* Typography */
+.advantage-item-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400!important;
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.advantage-item-text {
+    color: #bbbbbb;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+    text-align: center!important;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .advantage-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .advantage-title {
+        font-size: 28px;
+    }
+    
+    .advantage-description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .advantage-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .advantage-title {
+        font-size: 24px;
+    }
+}
+
+.course-advantages-end-line{position: absolute; bottom: 0; left: -1%; width: 102%; display: block;}
