@@ -54,10 +54,7 @@ function openVideoPopup(videoUrl, aspectRatio, playOnMobile) {
             
             if (youtubeId) {
                 const autoplay = playOnMobile ? '&autoplay=1' : '&autoplay=1&mute=1';
-                embedHtml = `<iframe 
-                    src="https://www.youtube.com/embed/${youtubeId}?rel=0${autoplay}&controls=1&modestbranding=1&rel=0&showinfo=0&fs=0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>`;
+                embedHtml = `<iframe id="SR7_1_1-1-12_video" class="sr7-media" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="flowthermolab-home" src="https://www.youtube.com/embed/yyGEXXodOB4?playsinline=true&enablejsapi=1&controls=0&showinfo=0&modestbranding=1&wmode=opaque&muted=true&html5=1&start=0&end=0&loop=1&rel=0&widgetid=1&vf=2"></iframe>`;
             }
         } else if (videoUrl.includes('vimeo.com')) {
             // Vimeo video
