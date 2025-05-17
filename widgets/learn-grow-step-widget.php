@@ -518,7 +518,7 @@ class Learn_Grow_Step_Widget extends Widget_Base {
                         <h3 class="title animate-on-scroll" data-animation="animate__fadeIn" data-delay="0.2s"><?php echo esc_html($settings['step3_title']); ?></h3>
                         <div class="description mb-30">
                             <p class="animate-on-scroll" data-animation="animate__fadeIn" data-delay="0.2s"><?php echo esc_html($settings['step3_description']); ?></p>
-                            <span class="step-no animate-on-scroll" data-animation="animate__fadeIn" data-delay="0.8s" style="<?php echo esc_attr($step_number_gradient); ?>">>3</span>
+                            <span class="step-no animate-on-scroll" data-animation="animate__fadeIn" data-delay="0.8s" style="<?php echo esc_attr($step_number_gradient); ?>">3</span>
                         </div>
                         <div class="icon animate-on-scroll" data-animation="animate__fadeInUp">
                             <img src="<?php echo esc_url($settings['step3_icon']['url']); ?>" alt="<?php echo esc_attr($settings['step3_title']); ?> Icon" />

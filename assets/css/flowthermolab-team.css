@@ -556,9 +556,11 @@
 @media(max-width: 668px){
     .partner-card{ display: block; }
     .partner-card__logo{ display: block; width: 100%; border-radius: 16px 16px 0 0; }
-    .partner-card__content{ border-radius: 0 0 16px 16px; }
+    .partner-card__content{ border-radius: 0 0 16px 16px; text-align: center; }
     .flowthermolab-team-container{ padding: 20px!important; }
     .testimonials-section{ margin: 0!important; padding: 20px 0!important; }
+    .flowthermolab-team-content .meet-our-team-right-top-line{ opacity: 0.15!important; }
+    .flowthermolab-team-content .meet-our-team-left-bottom-line{ opacity: 0.15!important; }
 }
 
 @media (max-width: 479px) {

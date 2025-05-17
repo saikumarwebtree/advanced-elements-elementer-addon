@@ -109,3 +109,7 @@
     visibility: visible;
     transform: translateY(0);
 }
+
+@media screen and (max-width: 668px){
+    .platform-card-container .platform-card{ text-align: center; }
+}

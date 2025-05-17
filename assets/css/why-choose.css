@@ -151,7 +151,7 @@
 /* Responsive Styles */
 @media (max-width: 1024px) {
     .features-grid {
-        grid-template-columns: repeat(2, 1fr)!important;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .statistics-grid {
@@ -168,6 +168,13 @@
     .features-grid {
         grid-template-columns: 1fr;
     }
+
+    .feature-item,
+    .computing-feature-title,
+    .computing-feature-description{ text-align: center!important; }
+    .computing-feature-icon{ margin: 0 auto 30px!important; }
+
+    .why-choose-feature-item{ text-align: center; }
     
     .statistics-grid {
         grid-template-columns: repeat(2, 1fr);
