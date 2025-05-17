@@ -480,7 +480,7 @@ class Learn_Grow_Step_Widget extends Widget_Base {
         }
         ?>
         <div class="learn-grow-achieve">
-            <div class="sine-wave <?php echo esc_attr($sine_wave_classes); ?>">
+            <div class="sine-wave animate-on-scroll <?php echo esc_attr($sine_wave_classes); ?>" data-animation="animate__fadeIn" data-delay="0.2s">
                 <img src="<?php echo esc_url($settings['sine_wave_image']['url']); ?>" alt="Sine Wave">
             </div>
             <div class="row" style="display: flex;">
