@@ -180,6 +180,7 @@ final class Advanced_Elements_Elementor_Addon {
         require_once(__DIR__ . '/widgets/flowthermolab-team-widget.php');
         require_once(__DIR__ . '/widgets/flowthermolab-cta-widget.php');
         require_once(__DIR__ . '/widgets/hero-banner-widget.php');
+        require_once(__DIR__ . '/widgets/contact-widget.php');
         // Register widgets
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Platform_Card_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Learn_Grow_Step_Widget());
@@ -193,6 +194,7 @@ final class Advanced_Elements_Elementor_Addon {
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Flowthermolab_Team_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Flowthermolab_CTA_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Hero_Banner_Widget());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Contact_Widget());
     }
 
     /**
@@ -217,6 +219,7 @@ final class Advanced_Elements_Elementor_Addon {
         wp_register_style('advanced-elements-flowthermolab-team', plugins_url('assets/css/flowthermolab-team.css', __FILE__));
         wp_register_style('advanced-elements-flowthermolab-cta', plugins_url('assets/css/flowthermolab-cta.css', __FILE__));
         wp_register_style('advanced-elements-hero-banner', plugins_url('assets/css/hero-banner.css', __FILE__));
+        wp_register_style('advanced-elements-contact', plugins_url('assets/css/contact.css', __FILE__));
 
         wp_enqueue_style('advanced-elements-widgets');
         wp_enqueue_style('advanced-elements-animate-css');
@@ -236,11 +239,13 @@ final class Advanced_Elements_Elementor_Addon {
         wp_enqueue_style('advanced-elements-flowthermolab-team');
         wp_enqueue_style('advanced-elements-flowthermolab-cta');
         wp_enqueue_style('advanced-elements-hero-banner');
+        wp_enqueue_style('advanced-elements-contact');
     }
 
     public function widget_scripts() { 
         wp_register_script('advanced-elements-slick', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), self::VERSION, true);
         wp_register_script('advanced-elements-lottie', 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js', array('jquery'), self::VERSION, true);
+        wp_register_script('advanced-elements-consultancy-grid', plugins_url('assets/js/consultancy-grid.js', __FILE__), ['jquery'], self::VERSION, true);
         wp_register_script('advanced-elements-widgets', plugins_url('assets/js/widgets.js', __FILE__), ['jquery'], self::VERSION, true);
         wp_register_script('advanced-elements-courses-tabs', plugins_url('assets/js/courses-tabs.js', __FILE__), ['jquery'], self::VERSION, true);
         wp_register_script('advanced-elements-why-choose', plugins_url('assets/js/why-choose.js', __FILE__), ['jquery'], self::VERSION, true);
@@ -248,6 +253,7 @@ final class Advanced_Elements_Elementor_Addon {
         
         wp_enqueue_script('advanced-elements-slick');
         wp_enqueue_script('advanced-elements-lottie');
+        wp_enqueue_script('advanced-elements-consultancy-grid');
         wp_enqueue_script('advanced-elements-widgets');
         wp_enqueue_script('advanced-elements-courses-tabs');
         wp_enqueue_script('advanced-elements-why-choose');

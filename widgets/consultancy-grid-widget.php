@@ -196,7 +196,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'placeholder' => esc_html__('https://www.youtube.com/watch?v=VIDEO_ID', 'advanced-elements-elementor'),
                 'description' => esc_html__('Enter YouTube or Vimeo URL', 'advanced-elements-elementor'),
                 'default' => [
-                    'url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                    'url' => '',
                 ],
                 'separator' => 'before',
             ]
@@ -879,8 +879,24 @@ class Consultancy_Grid_Widget extends Widget_Base {
                         <!-- Right Image with Circular Button -->
                         <div class="background-top-right-mask-container animate-on-scroll" data-animation="animate__fadeInUp">
                             <!-- Circle Button Container -->
+                            <?php 
+                                $video_url = !empty($settings['video_url']['url']) ? $settings['video_url']['url'] : '';
+                                $has_video = !empty($video_url);
+                                $video_aspect_ratio = !empty($settings['video_aspect_ratio']) ? esc_attr(trim($settings['video_aspect_ratio'])) : '169';
+                                $play_on_mobile = !empty($settings['video_play_on_mobile']) ? 'true' : 'false';
+                                
+                                if (!empty($settings['button_text'])) :
+                                    $button_onclick = $has_video ? 'onclick="openVideoPopup(\'' . esc_url($video_url) . '\', \'' . esc_attr($video_aspect_ratio) . '\', ' . $play_on_mobile . '); return false;"' : '';
+                            ?>
                             <div class="circle-button-container">
-                                <a href="<?php echo esc_url($circular_link); ?>" class="circle-button" <?php echo $circular_target . $circular_nofollow; ?>>
+                                <a href="<?php echo esc_url($circular_link); ?>" class="circle-button" 
+                                    <?php if (!empty($video_url)) : ?>
+                                        data-video-url="<?php echo esc_url($video_url); ?>"
+                                        data-aspect-ratio="<?php echo esc_attr($settings['video_aspect_ratio']); ?>"
+                                        data-play-mobile="<?php echo $settings['video_play_on_mobile'] === 'yes' ? 'true' : 'false'; ?>"
+                                    <?php endif; ?>
+                                    <?php echo $circular_target . $circular_nofollow; ?>
+                                >
                                     <svg viewBox="0 0 280 280" class="text-ring">
                                         <defs>
                                             <path id="circlePath" d="M140,140 m-85,0 a85,85 0 1,1 170,0 a85,85 0 1,1 -170,0" />
@@ -898,6 +914,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                                     </div>
                                 </a>
                             </div>
+                            <?php endif; ?> 
                             
                             <div class="image-card">
                                 <img src="<?php echo esc_url($settings['main_image_right']['url']); ?>" alt="Engineering Design" />
@@ -943,6 +960,25 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 <?php endif; */ ?>
             <?php endif; ?>
         </div>
+        <?php
+            // Add the video popup markup at the end
+            if ($has_video) :
+        ?>
+            <script>
+                jQuery(document).ready(function($) {
+                    $(".circle-button").on("click", function(e) {
+                        e.preventDefault();
+                        openVideoPopup("<?php echo esc_url($video_url); ?>", "'<?php echo $video_aspect_ratio; ?>", '<?php echo $play_on_mobile; ?>');
+                    });
+                });
+            </script>
+            <div id="video-popup-overlay" class="video-popup-overlay">
+                <div class="video-popup-container">
+                    <div class="video-popup-close">&times;</div>
+                    <div id="video-popup-content" class="video-popup-content"></div>
+                </div>
+            </div>
+        <?php endif; ?>
         <?php
     }
 }
