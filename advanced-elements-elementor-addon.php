@@ -97,6 +97,13 @@ final class Advanced_Elements_Elementor_Addon {
         // Register styles
         add_action('elementor/frontend/after_enqueue_styles', array($this, 'widget_styles'));
         add_action('elementor/frontend/after_enqueue_scripts', array($this, 'widget_scripts'));
+
+        /* footer template */
+        add_shortcode('flowthermolab_footer', array($this, 'render_footer_shortcode'));
+
+        /* sidebar widget */
+        add_action('widgets_init', array($this, 'register_footer_sidebar'));
+
     }
 
     /**
@@ -220,6 +227,8 @@ final class Advanced_Elements_Elementor_Addon {
         wp_register_style('advanced-elements-flowthermolab-cta', plugins_url('assets/css/flowthermolab-cta.css', __FILE__));
         wp_register_style('advanced-elements-hero-banner', plugins_url('assets/css/hero-banner.css', __FILE__));
         wp_register_style('advanced-elements-contact', plugins_url('assets/css/contact.css', __FILE__));
+        wp_register_style('advanced-elements-flowthermolab-footer', plugins_url('assets/css/flowthermolab-footer.css', __FILE__));
+        
 
         wp_enqueue_style('advanced-elements-widgets');
         wp_enqueue_style('advanced-elements-animate-css');
@@ -240,6 +249,7 @@ final class Advanced_Elements_Elementor_Addon {
         wp_enqueue_style('advanced-elements-flowthermolab-cta');
         wp_enqueue_style('advanced-elements-hero-banner');
         wp_enqueue_style('advanced-elements-contact');
+        wp_enqueue_style('advanced-elements-flowthermolab-footer');
     }
 
     public function widget_scripts() { 
@@ -259,6 +269,143 @@ final class Advanced_Elements_Elementor_Addon {
         wp_enqueue_script('advanced-elements-why-choose');
         wp_enqueue_script('advanced-elements-flowthermolab-landing');
     }
+
+    /**
+        * Register the footer-about sidebar area for use in themes
+    */
+    public function register_footer_sidebar() {
+        register_sidebar(
+            array(
+                'name'          => __('Footer About', 'advanced-elements-elementor'),
+                'id'            => 'footer-about',
+                'description'   => __('Widgets in this area will appear in the about section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h4 class="footer-about-title">',
+                'after_title'   => '</h4>',
+            )
+        );
+        register_sidebar(
+            array(
+                'name'          => __('Footer Social', 'advanced-elements-elementor'),
+                'id'            => 'footer-social',
+                'description'   => __('Widgets in this area will appear in the social icons section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h4 class="footer-about-title">',
+                'after_title'   => '</h4>',
+            )
+        );
+        register_sidebar(
+            array(
+                'name'          => __('Footer Address 1', 'advanced-elements-elementor'),
+                'id'            => 'footer-address-1',
+                'description'   => __('Widgets in this area will appear in the address 1 section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h4 class="footer-about-title">',
+                'after_title'   => '</h4>',
+            )
+        );
+        register_sidebar(
+            array(
+                'name'          => __('Footer Address 2', 'advanced-elements-elementor'),
+                'id'            => 'footer-address-2',
+                'description'   => __('Widgets in this area will appear in the address 2 section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h4 class="footer-about-title">',
+                'after_title'   => '</h4>',
+            )
+        );
+        register_sidebar(
+            array(
+                'name'          => __('Footer Quick Links', 'advanced-elements-elementor'),
+                'id'            => 'footer-quick-links',
+                'description'   => __('Widgets in this area will appear in the quick links section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-about-widget %2$s support-links">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h5 class="footer-about-title">',
+                'after_title'   => '</h5>',
+            )
+        );
+        register_sidebar(
+            array(
+                'name'          => __('Footer Contact', 'advanced-elements-elementor'),
+                'id'            => 'footer-contact',
+                'description'   => __('Widgets in this area will appear in the contanct section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h4 class="footer-about-title">',
+                'after_title'   => '</h4>',
+            )
+        );
+    }
+    public function render_footer_shortcode($atts) {
+        // Start output buffering to capture the HTML
+        ob_start();
+        ?>
+        
+            <section class="flowthermolab-footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="row">
+                            <!-- Logo & Description -->
+                            <div class="col col-lg-6 text-center-mobile text-lg-start">
+                                <?php dynamic_sidebar('footer-about'); ?>
+                            </div>
+    
+                            <!-- Newsletter Subscription -->
+                            <div class="col col-lg-6 col-center-mobile"
+                                style="display: flex; align-self: center; justify-content: end;">
+                                <?php dynamic_sidebar('footer-social'); ?>
+                            </div>
+                            <div class="empty-space"></div>
+                            <!-- Address Sections -->
+                            <div class="col col-md-6 col-lg-3 text-center-mobile text-lg-start">
+                                <div class="col-center-mobile">
+                                    <?php dynamic_sidebar('footer-address-1'); ?>
+                                </div>
+                            </div>
+    
+                            <div class="col col-md-6 col-lg-3 text-center-mobile text-lg-start">
+                                <div class="col-center-mobile">
+                                    <?php dynamic_sidebar('footer-address-2'); ?>
+                                </div>
+                            </div>
+    
+                            <!-- Support Links -->
+                            <div class="col col-md-6 col-lg-3 text-center-mobile">
+                                <div class="col-center-mobile">
+                                    <?php dynamic_sidebar('footer-quick-links'); ?>
+                                </div>
+                            </div>
+    
+                            <!-- Contact Information -->
+                            <div class="col col-md-6 col-lg-3 text-center-mobile text-lg-start">
+                                <div class="col-center-mobile">
+                                    <?php dynamic_sidebar('footer-contact'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="container">
+                    <div class="copyright">
+                        <p><?= date('Y'); ?> © Copyright <b>Flowthermolab</b>. All Rights Reserved | Powered by 
+                                <a href="https://webtreeonline.com" target="_blank">webtree</a></p>
+                    </div>
+                </div>
+            </section>
+        
+        <?php
+        // Get the buffered content and clean the buffer
+        $content = ob_get_clean();
+        
+        return $content;
+    }
+
 }
 
 // Initialize the plugin

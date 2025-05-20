@@ -1,0 +1,181 @@
+.flowthermolab-footer {
+    background-color: #0D1B32;
+    padding: 50px 0 20px;
+}
+
+.flowthermolab-footer h5{ margin-bottom: 16px; color: #3B3B3B; line-height: 26px; }
+
+.flowthermolab-footer .container {
+    width: 100%;
+    /* max-width: 85%; */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-content {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 70px 80px;
+    margin-bottom: 40px;
+}
+
+.flowthermolab-footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+}
+
+.flowthermolab-footer .col {
+    padding: 15px;
+    flex: 0 0 100%;
+}
+
+/* Social icons */
+.flowthermolab-footer .social-icons {
+    display: flex;
+    margin-top: 20px!important;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flowthermolab-footer .social-icons li {
+    width: 50px;
+    height: 50px;
+    background: #F8F8F8;
+    border-radius: 50%;
+    margin-right: 15px;
+    padding: 14px;
+}
+
+.flowthermolab-footer .social-icons a {
+    font-size: 20px;
+    margin: 0!important;
+}
+.flowthermolab-footer .social-icons a img{ margin: 0 auto; display: block; width: 20px; }
+
+/* Newsletter form */
+.flowthermolab-footer .form-group {
+    margin-bottom: 15px;
+}
+
+.flowthermolab-footer .form-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.flowthermolab-footer .input-group {
+    display: flex;
+    width: 100%;
+}
+
+.flowthermolab-footer .form-control {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.flowthermolab-footer .btn {
+    padding: 10px 30px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+.btn-subscribe{ 
+    display: block;
+    background: linear-gradient(225deg, #4e7fce, #4faaff);
+    color: #FFFFFF;
+    padding: 18px 48px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative; 
+}
+
+.flowthermolab-footer .btn:hover {
+    background-color: #0b5ed7;
+}
+
+/* Contact and links */
+.flowthermolab-footer .contact-links i {
+    margin-right: 8px;
+    width: 15px;
+}
+.flowthermolab-footer .contact-links a{ text-decoration: none; color: inherit;}
+
+.flowthermolab-footer .support-links ul{ margin: 0; padding: 0; }
+.flowthermolab-footer .support-links ul li {
+    margin-bottom: 8px!important;
+    list-style: none;
+}
+.flowthermolab-footer .support-links ul li a{ color: #000!important; text-decoration: none; font-weight: 400!important; padding: 0!important }
+
+/* Copyright section */
+.flowthermolab-footer .copyright {
+    text-align: center;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.flowthermolab-footer .empty-space{ padding: 20px; }
+
+/* Responsive styles */
+@media (min-width: 768px) {
+    .flowthermolab-footer .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .flowthermolab-footer .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+@media (min-width: 992px) {
+    .flowthermolab-footer .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .flowthermolab-footer .col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .flowthermolab-footer .text-lg-start {
+        text-align: left;
+    }
+
+    .flowthermolab-footer .text-lg-end {
+        text-align: right;
+    }
+
+    .flowthermolab-footer .justify-lg-end {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 991px) {
+    .flowthermolab-footer .footer-content {
+        padding: 40px 20px;
+    }
+
+    .flowthermolab-footer .text-center-mobile {
+        text-align: center;
+    }
+
+    .flowthermolab-footer .col-center-mobile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .flowthermolab-footer .newsletter-container {
+        max-width: 100% !important;
+    }
+}
