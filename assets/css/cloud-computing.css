@@ -172,6 +172,8 @@
     text-align: left;
 }
 
+.lottie-player{ width: 120%; height: 120%; }
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
     .cloud-hero-section {
@@ -196,6 +198,7 @@
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    .lottie-player{ width: 100%; height: 100%; }
 }
 
 @media (max-width: 767px) {

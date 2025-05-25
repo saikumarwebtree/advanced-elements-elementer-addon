@@ -360,14 +360,26 @@
 
 /* Circle Button Container */
 .badge-circle-button-container {
-    display: block;
+    display: flex;
     z-index: 5;
+    justify-content: end;
 }
+
+.promise-text{ align-self: center;
+    max-width: 50%;
+    text-align: left;
+    padding: 20px 50px 20px 30px;
+    margin: 0;
+    margin-right: -30px;
+    border: 2px solid #4a89dc;
+    border-radius: 10px;
+}
+.promise-text p{ margin: 0; font-size: 18px; color: #bbbbbb; }
 
 .badge-circle-button-container .circle-button {
     position: relative;
-    width: 110px;
-    height: 110px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     background: linear-gradient(125deg, #4E7FCE, #4FAAFF);
     box-shadow: 0 0 20px rgba(0, 162, 250, 0.5);
@@ -386,7 +398,9 @@
     font-size: 40px;
     color: #fff;
     z-index: 2;
+    text-align: center;
 }
+.badge-circle-button-container .circle-button .play-icon small{ display: block; font-size: 14px; text-align: center; }
 
 .badge-circle-button-container .circle-button .play-icon svg {
     width: 50px;

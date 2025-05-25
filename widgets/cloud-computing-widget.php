@@ -1214,34 +1214,14 @@ class Cloud_Computing_Widget extends Widget_Base {
                         <?php if (!empty($settings['illustration_image']['url'])) : ?>
                             <!-- <img src="<?php echo esc_url($settings['illustration_image']['url']); ?>" alt="Cloud Computing Illustration"> -->
                             <lottie-player 
+                                class="lottie-player"
                                 src="<?php echo esc_url(plugin_dir_url(__FILE__) . '../assets/lottie/cloud-computing.json'); ?>"
                                 background="transparent"
                                 speed="1"
-                                style="width: 100%; height: 100%;"
                                 loop
                                 autoplay>
                             </lottie-player>
                         <?php endif; ?>
-                        <?php /*if (!empty($lottie_source)) :
-        // Set attributes
-        $loop = $settings['lottie_loop'] === 'yes' ? 'loop' : '';
-        $autoplay = $settings['lottie_autoplay'] === 'yes' ? 'autoplay' : '';
-        $speed = !empty($settings['lottie_speed']) ? $settings['lottie_speed'] : 1;
-        $renderer = !empty($settings['lottie_renderer']) ? $settings['lottie_renderer'] : 'svg';
-        ?>
-        <div class="cloud-illustration">
-            <lottie-player 
-                src="<?php echo esc_url($lottie_source); ?>"
-                background="transparent"
-                speed="<?php echo esc_attr($speed); ?>"
-                style="width: 100%; height: 100%;"
-                renderer="<?php echo esc_attr($renderer); ?>"
-                <?php echo $loop; ?>
-                <?php echo $autoplay; ?>>
-            </lottie-player>
-        </div>
-        <?php
-    endif;*/ ?>
                     </div>
                 </div>
                 

@@ -8,54 +8,62 @@ if (!defined('ABSPATH')) {
 /**
  * Courses Showcase Widget
  */
-class Courses_Showcase_Widget extends Widget_Base {
+class Courses_Showcase_Widget extends Widget_Base
+{
 
     /**
      * Get widget name
      */
-    public function get_name() {
+    public function get_name()
+    {
         return 'courses_showcase';
     }
 
     /**
      * Get widget title
      */
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Courses Showcase', 'advanced-elementsx-elementor');
     }
 
     /**
      * Get widget icon
      */
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-posts-grid';
     }
 
     /**
      * Get widget keywords
      */
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['courses', 'products', 'woocommerce', 'grid', 'showcase', 'tabs'];
     }
 
     /**
      * Get script depends
      */
-    public function get_script_depends() {
+    public function get_script_depends()
+    {
         return ['advanced-elements-courses-tabs'];
     }
 
     /**
      * Get style depends
      */
-    public function get_style_depends() {
+    public function get_style_depends()
+    {
         return ['advanced-elements-widgets', 'advanced-elements-courses-showcase'];
     }
 
     /**
      * Register widget controls
      */
-    protected function _register_controls() {
+    protected function _register_controls()
+    {
 
         // Content Section - Header
         $this->start_controls_section(
@@ -106,7 +114,7 @@ class Courses_Showcase_Widget extends Widget_Base {
             ]
         );
 
-        $this->add_control(
+        /*$this->add_control(
             'badge_subtext',
             [
                 'label' => esc_html__('Badge Subtext', 'advanced-elements-elementor'),
@@ -126,7 +134,39 @@ class Courses_Showcase_Widget extends Widget_Base {
                     'library' => 'fa-solid',
                 ],
             ]
+        );*/
+
+        $this->add_control(
+            'promise_text',
+            [
+                'label' => esc_html__('Promise Text', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => esc_html__('Your satisfaction matters—get a full refund within 5 days if needed!', 'advanced-elements-elementor'),
+                'placeholder' => esc_html__('Enter promise text', 'advanced-elements-elementor'),
+                'rows' => 2,
+            ]
         );
+
+        $this->add_control(
+            'circle_main_text',
+            [
+                'label' => esc_html__('Circle Main Text', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('100%', 'advanced-elements-elementor'),
+                'placeholder' => esc_html__('Enter main text', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'circle_small_text',
+            [
+                'label' => esc_html__('Circle Small Text', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('PROMISE', 'advanced-elements-elementor'),
+                'placeholder' => esc_html__('Enter small text', 'advanced-elements-elementor'),
+            ]
+        );
+
 
         $this->end_controls_section();
 
@@ -1162,9 +1202,10 @@ class Courses_Showcase_Widget extends Widget_Base {
     /**
      * Render widget output on the frontend
      */
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
-        
+
         // Generate a unique ID for the tabs
         $tabs_id = 'courses-tabs-' . $this->get_id();
         ?>
@@ -1174,87 +1215,109 @@ class Courses_Showcase_Widget extends Widget_Base {
                 <!-- Header Section -->
                 <div class="courses-header">
                     <div class="courses-header-left animate-on-scroll" data-animation="animate__fadeInUp">
-                        <?php if (!empty($settings['subtitle'])) : ?>
+                        <?php if (!empty($settings['subtitle'])): ?>
                             <h5 class="courses-subtitle"><?php echo esc_html($settings['subtitle']); ?></h5>
                         <?php endif; ?>
-                        
-                        <?php if (!empty($settings['title'])) : ?>
+
+                        <?php if (!empty($settings['title'])): ?>
                             <h2 class="courses-title"><?php echo esc_html($settings['title']); ?></h2>
                         <?php endif; ?>
-                        
-                        <?php if (!empty($settings['description'])) : ?>
+
+                        <?php if (!empty($settings['description'])): ?>
                             <p class="courses-description"><?php echo esc_html($settings['description']); ?></p>
                         <?php endif; ?>
                     </div>
-                    
-                    <?php if (!empty($settings['badge_text'])) : ?>
-                    <div class="badge-circle-button-container animate-on-scroll" data-animation="animate__fadeInUp">
-                        <div class="circle-button">
-                            <svg viewBox="0 0 280 280" class="text-ring">
-                                <defs>
-                                    <path id="circlePath" d="M140,140 m-85,0 a85,85 0 1,1 170,0 a85,85 0 1,1 -170,0"></path>
-                                </defs>
-                                <text>
-                                    <textPath href="#circlePath" startOffset="0%">
-                                    <?php echo esc_html($settings['badge_text']); ?>
-                                    </textPath>
-                                </text>
-                            </svg>
-                            
-                            <!-- Center Play Icon -->
-                            <div class="play-icon">
-                                <?php \Elementor\Icons_Manager::render_icon($settings['badge_icon'], ['aria-hidden' => 'true']); ?>
+
+                    <?php if (!empty($settings['badge_text'])): ?>
+                        <div class="badge-circle-button-container animate-on-scroll" data-animation="animate__fadeInUp">
+                            <?php if (!empty($settings['promise_text'])): ?>
+                                <div class="promise-text">
+                                    <p><?php echo esc_html($settings['promise_text']); ?></p>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="circle-button">
+                                <div class="play-icon">
+                                    <?php if (!empty($settings['circle_main_text'])): ?>
+                                        <?php echo esc_html($settings['circle_main_text']); ?>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($settings['circle_small_text'])): ?>
+                                        <small><?php echo esc_html($settings['circle_small_text']); ?></small>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php /*<div class="courses-header-right">
-                        <div class="courses-badge">
-                            <div class="courses-badge-icon">
-                                <?php \Elementor\Icons_Manager::render_icon($settings['badge_icon'], ['aria-hidden' => 'true']); ?>
-                            </div>
-                            <div class="courses-badge-content">
-                                <div class="courses-badge-text"><?php echo esc_html($settings['badge_text']); ?></div>
-                                <?php if (!empty($settings['badge_subtext'])) : ?>
-                                    <div class="courses-badge-subtext"><?php echo esc_html($settings['badge_subtext']); ?></div>
-                                <?php endif; ?>
+                        <?php /*
+                        <div class="badge-circle-button-container animate-on-scroll" data-animation="animate__fadeInUp">
+                            <div class="circle-button">
+                                <svg viewBox="0 0 280 280" class="text-ring">
+                                    <defs>
+                                        <path id="circlePath" d="M140,140 m-85,0 a85,85 0 1,1 170,0 a85,85 0 1,1 -170,0"></path>
+                                    </defs>
+                                    <text>
+                                        <textPath href="#circlePath" startOffset="0%">
+                                            <?php echo esc_html($settings['badge_text']); ?>
+                                        </textPath>
+                                    </text>
+                                </svg>
+
+                                <!-- Center Play Icon -->
+                                <div class="play-icon">
+                                    <?php \Elementor\Icons_Manager::render_icon($settings['badge_icon'], ['aria-hidden' => 'true']); ?>
+                                </div>
                             </div>
                         </div>
-                    </div>*/ ?>
+                        */ ?>
+                        <?php /*<div class="courses-header-right">
+                                      <div class="courses-badge">
+                                          <div class="courses-badge-icon">
+                                              <?php \Elementor\Icons_Manager::render_icon($settings['badge_icon'], ['aria-hidden' => 'true']); ?>
+                                          </div>
+                                          <div class="courses-badge-content">
+                                              <div class="courses-badge-text"><?php echo esc_html($settings['badge_text']); ?></div>
+                                              <?php if (!empty($settings['badge_subtext'])) : ?>
+                                                  <div class="courses-badge-subtext"><?php echo esc_html($settings['badge_subtext']); ?></div>
+                                              <?php endif; ?>
+                                          </div>
+                                      </div>
+                                  </div>*/ ?>
                     <?php endif; ?>
                 </div>
-                
+
                 <!-- Tabs Section -->
                 <div class="courses-tabs-container  animate-on-scroll" data-animation="animate__fadeInUp">
                     <div class="courses-tabs" id="<?php echo esc_attr($tabs_id); ?>">
-                        <?php if ('yes' === $settings['show_all_tab']) : ?>
+                        <?php if ('yes' === $settings['show_all_tab']): ?>
                             <div class="courses-tab-item active" data-tab="all">
                                 <?php echo esc_html($settings['all_tab_text']); ?>
                             </div>
                         <?php endif; ?>
-                        
-                        <?php foreach ($settings['tabs'] as $index => $tab) : 
+
+                        <?php foreach ($settings['tabs'] as $index => $tab):
                             $tab_id = 'tab-' . $index;
                             $is_active = 'yes' !== $settings['show_all_tab'] && $index === 0 ? 'active' : '';
-                        ?>
-                            <div class="courses-tab-item <?php echo esc_attr($is_active); ?>" data-tab="<?php echo esc_attr($tab_id); ?>">
+                            ?>
+                            <div class="courses-tab-item <?php echo esc_attr($is_active); ?>"
+                                data-tab="<?php echo esc_attr($tab_id); ?>">
                                 <?php echo esc_html($tab['tab_title']); ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
-                
+
                 <!-- Tab Content -->
                 <div class="courses-tab-content  animate-on-scroll" data-animation="animate__fadeInUp">
                     <?php
                     // All tab content (if enabled)
-                    if ('yes' === $settings['show_all_tab']) : ?>
+                    if ('yes' === $settings['show_all_tab']): ?>
                         <div class="tab-pane active" data-tab-content="all">
                             <div class="courses-grid">
                                 <?php
                                 // Get products from all tabs (limited to avoid duplicates)
                                 $all_products = [];
                                 $count = 0;
-                                
+
                                 // Only process if WooCommerce is active
                                 if (class_exists('WooCommerce')) {
                                     foreach ($settings['tabs'] as $tab) {
@@ -1271,14 +1334,14 @@ class Courses_Showcase_Widget extends Widget_Base {
                                                     ],
                                                 ],
                                             ];
-                                            
+
                                             $products = get_posts($args);
-                                            
+
                                             foreach ($products as $product) {
                                                 if (!isset($all_products[$product->ID])) {
                                                     $all_products[$product->ID] = $product;
                                                     $count++;
-                                                    
+
                                                     if ($count >= $settings['number_of_products']) {
                                                         break 2;
                                                     }
@@ -1292,15 +1355,14 @@ class Courses_Showcase_Widget extends Widget_Base {
                                                     if ($product) {
                                                         $all_products[$product_id] = $product;
                                                         $count++;
-                                                        
+
                                                         if ($count >= $settings['number_of_products']) {
                                                             break 2;
                                                         }
                                                     }
                                                 }
                                             }
-                                        }
-                                        elseif ($tab['product_source'] === 'ld_category' && !empty($tab['ld_course_category'])) {
+                                        } elseif ($tab['product_source'] === 'ld_category' && !empty($tab['ld_course_category'])) {
                                             $number_of_products = $settings['number_of_products'];
                                             // Get courses from LearnDash category
                                             $args = [
@@ -1321,9 +1383,9 @@ class Courses_Showcase_Widget extends Widget_Base {
                                             } else {
                                                 $args['posts_per_page'] = -1; // WordPress way of saying "get all posts"
                                             }
-                                            
+
                                             $courses = get_posts($args);
-                                            
+
                                             // Render the courses
                                             foreach ($courses as $course) {
                                                 $this->render_course_card($course, $settings);
@@ -1338,7 +1400,7 @@ class Courses_Showcase_Widget extends Widget_Base {
                                             }
                                         }
                                     }
-                                    
+
                                     // Render the products
                                     foreach ($all_products as $product) {
                                         $this->render_product_card($product, $settings);
@@ -1348,13 +1410,13 @@ class Courses_Showcase_Widget extends Widget_Base {
                                 }
                                 ?>
                             </div>
-                            
+
                             <?php
                             // Display View All button if any tab has a view all URL
                             $has_view_all = false;
                             $view_all_url = '';
                             $view_all_text = '';
-                            
+
                             foreach ($settings['tabs'] as $tab) {
                                 if (!empty($tab['view_all_url']['url'])) {
                                     $has_view_all = true;
@@ -1363,8 +1425,8 @@ class Courses_Showcase_Widget extends Widget_Base {
                                     break;
                                 }
                             }
-                            
-                            if ($has_view_all) : ?>
+
+                            if ($has_view_all): ?>
                                 <div class="view-all-container">
                                     <a href="<?php echo esc_url($view_all_url); ?>" class="view-all-button">
                                         <?php echo esc_html($view_all_text); ?> <span class="arrow-icon">→</span>
@@ -1373,20 +1435,21 @@ class Courses_Showcase_Widget extends Widget_Base {
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
-                    
+
                     <?php
                     // Individual tab content
-                    foreach ($settings['tabs'] as $index => $tab) :
+                    foreach ($settings['tabs'] as $index => $tab):
                         $tab_id = 'tab-' . $index;
                         $is_active = 'yes' !== $settings['show_all_tab'] && $index === 0 ? 'active' : '';
-                    ?>
-                        <div class="tab-pane <?php echo esc_attr($is_active); ?>" data-tab-content="<?php echo esc_attr($tab_id); ?>">
+                        ?>
+                        <div class="tab-pane <?php echo esc_attr($is_active); ?>"
+                            data-tab-content="<?php echo esc_attr($tab_id); ?>">
                             <div class="courses-grid">
                                 <?php
                                 // Only process if WooCommerce is active
                                 if (class_exists('WooCommerce')) {
                                     $products = [];
-                                    
+
                                     if ($tab['product_source'] === 'category' && !empty($tab['product_category'])) {
                                         // Get products from category
                                         $args = [
@@ -1400,7 +1463,7 @@ class Courses_Showcase_Widget extends Widget_Base {
                                                 ],
                                             ],
                                         ];
-                                        
+
                                         $products = get_posts($args);
                                     } elseif ($tab['product_source'] === 'custom' && !empty($tab['custom_products'])) {
                                         // Get custom selected products
@@ -1410,7 +1473,7 @@ class Courses_Showcase_Widget extends Widget_Base {
                                                 $products[] = $product;
                                             }
                                         }
-                                        
+
                                         // Limit to the specified number
                                         $products = array_slice($products, 0, $settings['number_of_products']);
                                     } elseif ($tab['product_source'] === 'ld_category' && !empty($tab['ld_course_category'])) {
@@ -1434,9 +1497,9 @@ class Courses_Showcase_Widget extends Widget_Base {
                                         } else {
                                             $args['posts_per_page'] = -1; // WordPress way of saying "get all posts"
                                         }
-                                        
+
                                         $courses = get_posts($args);
-                                        
+
                                         // Render the courses
                                         foreach ($courses as $course) {
                                             $this->render_course_card($course, $settings);
@@ -1450,7 +1513,7 @@ class Courses_Showcase_Widget extends Widget_Base {
                                             }
                                         }
                                     }
-                                    
+
                                     // Render the products
                                     foreach ($products as $product) {
                                         $this->render_product_card($product, $settings);
@@ -1460,8 +1523,8 @@ class Courses_Showcase_Widget extends Widget_Base {
                                 }
                                 ?>
                             </div>
-                            
-                            <?php if (!empty($tab['view_all_url']['url'])) : ?>
+
+                            <?php if (!empty($tab['view_all_url']['url'])): ?>
                                 <div class="view-all-container">
                                     <a href="<?php echo esc_url($tab['view_all_url']['url']); ?>" class="view-all-button">
                                         <?php echo esc_html($tab['view_all_text']); ?> <span class="arrow-icon">→</span>
@@ -1475,35 +1538,35 @@ class Courses_Showcase_Widget extends Widget_Base {
         </div>
 
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabsContainer = document.getElementById('<?php echo esc_js($tabs_id); ?>');
-            const tabItems = tabsContainer.querySelectorAll('.courses-tab-item');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            
-            tabItems.forEach(function(tab) {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
-                    tabItems.forEach(function(item) {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding tab content
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    tabPanes.forEach(function(pane) {
-                        pane.classList.remove('active');
-                        
-                        if (pane.getAttribute('data-tab-content') === tabId) {
-                            pane.classList.add('active');
-                        }
+            document.addEventListener('DOMContentLoaded', function () {
+                // Tab functionality
+                const tabsContainer = document.getElementById('<?php echo esc_js($tabs_id); ?>');
+                const tabItems = tabsContainer.querySelectorAll('.courses-tab-item');
+                const tabPanes = document.querySelectorAll('.tab-pane');
+
+                tabItems.forEach(function (tab) {
+                    tab.addEventListener('click', function () {
+                        // Remove active class from all tabs
+                        tabItems.forEach(function (item) {
+                            item.classList.remove('active');
+                        });
+
+                        // Add active class to clicked tab
+                        this.classList.add('active');
+
+                        // Show corresponding tab content
+                        const tabId = this.getAttribute('data-tab');
+
+                        tabPanes.forEach(function (pane) {
+                            pane.classList.remove('active');
+
+                            if (pane.getAttribute('data-tab-content') === tabId) {
+                                pane.classList.add('active');
+                            }
+                        });
                     });
                 });
             });
-        });
         </script>
         <?php
     }
@@ -1515,22 +1578,23 @@ class Courses_Showcase_Widget extends Widget_Base {
     /**
      * Render a LearnDash course card
      */
-    private function render_course_card($course, $settings) {
+    private function render_course_card($course, $settings)
+    {
         if (!defined('LEARNDASH_VERSION')) {
             return;
         }
-        
+
         $course_id = $course->ID;
         $course_permalink = get_permalink($course_id);
         $course_title = get_the_title($course_id);
         $course_image = get_the_post_thumbnail_url($course_id, 'medium') ?: \Elementor\Utils::get_placeholder_image_src();
-        
+
         // Get course meta
         $lessons_count = learndash_get_course_lessons_list($course_id) ? count(learndash_get_course_lessons_list($course_id)) : 0;
-        
+
         // Get course duration - depends on how you store it
         $duration = get_post_meta($course_id, '_ld_course_duration', true) ?: '';
-        
+
         // Price - for LearnDash courses if you have pricing enabled
         $price = '';
         if (function_exists('learndash_get_course_price')) {
@@ -1552,9 +1616,9 @@ class Courses_Showcase_Widget extends Widget_Base {
                             $currency = '$';
                         }
                     }
-                    
+
                     $price = $currency . $course_pricing['price'];
-                    
+
                     // Add subscription info if applicable
                     if (!empty($course_pricing['price_type']) && $course_pricing['price_type'] === 'subscribe') {
                         $price .= '/' . $course_pricing['interval_count'] . ' ' . $course_pricing['interval'];
@@ -1562,38 +1626,39 @@ class Courses_Showcase_Widget extends Widget_Base {
                 }
             }
         }
-        
+
         // Badge text
         $badge_text = $settings['product_badge_text'];
         ?>
         <div class="course-card">
-            <?php if (!empty($badge_text)) : ?>
+            <?php if (!empty($badge_text)): ?>
                 <!-- <div class="course-card-badge"><?php echo esc_html($badge_text); ?></div> -->
             <?php endif; ?>
-            
+
             <div class="course-card-image">
                 <img src="<?php echo esc_url($course_image); ?>" alt="<?php echo esc_attr($course_title); ?>">
             </div>
-            
+
             <div class="course-card-content">
                 <h3 class="course-card-title">
                     <a href="<?php echo esc_url($course_permalink); ?>"><?php echo esc_html($course_title); ?></a>
                 </h3>
-                
-                <?php if ('yes' === $settings['show_product_meta']) : ?>
+
+                <?php if ('yes' === $settings['show_product_meta']): ?>
                     <div class="course-card-meta">
                         <span class="course-card-lessons">
-                            <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?> <?php echo esc_html($lessons_count); ?>
+                            <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?>
+                            <?php echo esc_html($lessons_count); ?>
                         </span>
-                        <?php if (!empty($duration)) : ?>
-                        <span class="course-card-duration">
-                            <i class="fas fa-clock"></i> <?php echo esc_html($duration); ?>
-                        </span>
+                        <?php if (!empty($duration)): ?>
+                            <span class="course-card-duration">
+                                <i class="fas fa-clock"></i> <?php echo esc_html($duration); ?>
+                            </span>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
-                
-                <?php if ('yes' === $settings['show_price'] && !empty($price)) : ?>
+
+                <?php if ('yes' === $settings['show_price'] && !empty($price)): ?>
                     <div class="course-card-price-container">
                         <div class="course-card-price">
                             <?php echo esc_html($price); ?>
@@ -1604,49 +1669,50 @@ class Courses_Showcase_Widget extends Widget_Base {
         </div>
         <?php
     }
-    private function render_product_card($product, $settings) {
+    private function render_product_card($product, $settings)
+    {
         if (!class_exists('WooCommerce')) {
             return;
         }
-        
+
         $product_id = $product->ID;
         $product_obj = wc_get_product($product_id);
-        
+
         if (!$product_obj) {
             return;
         }
-        
+
         $product_permalink = get_permalink($product_id);
         $product_title = get_the_title($product_id);
         $product_image = get_the_post_thumbnail_url($product_id, 'medium') ?: \Elementor\Utils::get_placeholder_image_src();
-        
+
         // Get product meta (can be customized to use your actual product meta keys)
         $lessons = get_post_meta($product_id, '_lessons', true) ?: '10';
         $duration = get_post_meta($product_id, '_duration', true) ?: '19h 30m';
-        
+
         // Rating
         $rating = $product_obj->get_average_rating();
         $rating_count = $product_obj->get_rating_count();
-        
+
         // Price
         $price = $product_obj->get_price_html();
-        
+
         // Custom badge
         $badge_text = $settings['product_badge_text'];
         ?>
         <div class="course-card">
-            <?php if (!empty($badge_text)) : ?>
+            <?php if (!empty($badge_text)): ?>
                 <!-- <div class="course-card-badge"><?php echo esc_html($badge_text); ?></div> -->
             <?php endif; ?>
-            
+
             <div class="course-card-image">
                 <img src="<?php echo esc_url($product_image); ?>" alt="<?php echo esc_attr($product_title); ?>">
             </div>
-            
+
             <div class="course-card-content">
-                <?php if ('yes' === $settings['show_rating'] && $rating > 0) : ?>
+                <?php if ('yes' === $settings['show_rating'] && $rating > 0): ?>
                     <div class="course-card-rating">
-                        <?php 
+                        <?php
                         // Display stars
                         for ($i = 1; $i <= 5; $i++) {
                             if ($i <= floor($rating)) {
@@ -1657,29 +1723,30 @@ class Courses_Showcase_Widget extends Widget_Base {
                                 echo '<i class="far fa-star"></i>';
                             }
                         }
-                        
+
                         // Display rating count
                         echo '(' . number_format_i18n($rating_count) . ')';
                         ?>
                     </div>
                 <?php endif; ?>
-                
+
                 <h3 class="course-card-title">
                     <a href="<?php echo esc_url($product_permalink); ?>"><?php echo esc_html($product_title); ?></a>
                 </h3>
-                
-                <?php if ('yes' === $settings['show_product_meta']) : ?>
+
+                <?php if ('yes' === $settings['show_product_meta']): ?>
                     <div class="course-card-meta">
                         <span class="course-card-lessons">
-                            <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?> <?php echo esc_html($lessons); ?>
+                            <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?>
+                            <?php echo esc_html($lessons); ?>
                         </span>
                         <span class="course-card-duration">
                             <i class="fas fa-clock"></i> <?php echo esc_html($duration); ?>
                         </span>
                     </div>
                 <?php endif; ?>
-                
-                <?php if ('yes' === $settings['show_price']) : ?>
+
+                <?php if ('yes' === $settings['show_price']): ?>
                     <div class="course-card-price-container">
                         <div class="course-card-price">
                             <?php
@@ -1687,7 +1754,7 @@ class Courses_Showcase_Widget extends Widget_Base {
                             if ($product_obj->is_on_sale() && 'yes' === $settings['show_sale_price']) {
                                 $regular_price = $product_obj->get_regular_price();
                                 $sale_price = $product_obj->get_sale_price();
-                                
+
                                 if (!empty($regular_price) && !empty($sale_price)) {
                                     echo '<span class="course-card-sale-price">' . wc_price($sale_price) . '</span> ';
                                     echo '<span class="course-card-regular-price"><del>' . wc_price($regular_price) . '</del></span>';
