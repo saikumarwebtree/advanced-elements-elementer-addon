@@ -42,6 +42,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    justify-content: center;
 }
 
 .flowthermolab-footer .social-icons li {
@@ -187,7 +188,7 @@
 }
 
 .flowthermolab-footer .empty-space {
-    padding: 20px;
+    padding: 0px;
 }
 
 /* Responsive styles */
@@ -244,4 +245,156 @@
     .flowthermolab-footer .newsletter-container {
         max-width: 100% !important;
     }
+}
+
+.newsletter-form {
+    max-width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.newsletter-form p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.newsletter-form .wpcf7-form-control-wrap {
+    flex: 1;
+    display: flex !important;
+}
+
+.newsletter-form .email-input {
+    flex: 1;
+    width: 100% !important;
+    padding: 18px 24px;
+    font-size: 16px;
+    border: none !important;
+    outline: none;
+    background: transparent;
+    color: #333;
+    box-shadow: none !important;
+}
+
+.newsletter-form .email-input::placeholder {
+    color: #9ca3af;
+    font-size: 16px;
+}
+
+.newsletter-form .subscribe-button {
+    padding: 18px 32px;
+    background: linear-gradient(125deg, #4E7FCE, #4FAAFF);
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.newsletter-form .subscribe-button:hover {
+    background: linear-gradient(125deg, #4E7FCE, #4FAAFF);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+}
+
+.newsletter-form .subscribe-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .newsletter-form {
+        max-width: 400px;
+    }
+
+    .newsletter-form p {
+        flex-direction: column;
+    }
+
+    .newsletter-form .wpcf7-form-control-wrap {
+        width: 100%;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .newsletter-form .email-input {
+        padding: 16px 20px;
+        font-size: 15px;
+    }
+
+    .newsletter-form .subscribe-button {
+        padding: 16px 24px;
+        font-size: 15px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .newsletter-form {
+        max-width: 100%;
+    }
+
+    .newsletter-form .email-input {
+        padding: 14px 18px;
+    }
+
+    .newsletter-form .subscribe-button {
+        padding: 14px 20px;
+    }
+}
+
+/* Focus states for accessibility */
+.newsletter-form .email-input:focus {
+    background-color: #f9fafb;
+}
+
+.newsletter-form .subscribe-button:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+}
+
+/* Animation for form interaction */
+.newsletter-form {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.newsletter-form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Contact Form 7 specific styles */
+.wpcf7-form-control.wpcf7-not-valid {
+    border-color: #ef4444 !important;
+}
+
+.wpcf7-not-valid-tip {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.wpcf7-response-output {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.wpcf7-mail-sent-ok {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.wpcf7-validation-errors {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
 }

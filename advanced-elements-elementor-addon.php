@@ -290,9 +290,20 @@ final class Advanced_Elements_Elementor_Addon {
                 'name'          => __('Footer Social', 'advanced-elements-elementor'),
                 'id'            => 'footer-social',
                 'description'   => __('Widgets in this area will appear in the social icons section of the footer.', 'advanced-elements-elementor'),
-                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'before_widget' => '<div class="footer-social-icons-widget %2$s">',
                 'after_widget'  => '</div>',
-                'before_title'  => '<h4 class="footer-about-title">',
+                'before_title'  => '<h4 class="footer-social-icons-title">',
+                'after_title'   => '</h4>',
+            )
+        );
+        register_sidebar(
+            array(
+                'name'          => __('Footer Subscription', 'advanced-elements-elementor'),
+                'id'            => 'footer-subscription',
+                'description'   => __('Widgets in this area will appear in the social subscription section of the footer.', 'advanced-elements-elementor'),
+                'before_widget' => '<div class="footer-subscription-widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h4 class="footer-subscription-title">',
                 'after_title'   => '</h4>',
             )
         );
@@ -301,9 +312,9 @@ final class Advanced_Elements_Elementor_Addon {
                 'name'          => __('Footer Address 1', 'advanced-elements-elementor'),
                 'id'            => 'footer-address-1',
                 'description'   => __('Widgets in this area will appear in the address 1 section of the footer.', 'advanced-elements-elementor'),
-                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'before_widget' => '<div class="footer-address-1-widget %2$s">',
                 'after_widget'  => '</div>',
-                'before_title'  => '<h4 class="footer-about-title">',
+                'before_title'  => '<h4 class="footer-address-1-title">',
                 'after_title'   => '</h4>',
             )
         );
@@ -312,9 +323,9 @@ final class Advanced_Elements_Elementor_Addon {
                 'name'          => __('Footer Address 2', 'advanced-elements-elementor'),
                 'id'            => 'footer-address-2',
                 'description'   => __('Widgets in this area will appear in the address 2 section of the footer.', 'advanced-elements-elementor'),
-                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'before_widget' => '<div class="footer-address-2-widget %2$s">',
                 'after_widget'  => '</div>',
-                'before_title'  => '<h4 class="footer-about-title">',
+                'before_title'  => '<h4 class="footer-address-2-title">',
                 'after_title'   => '</h4>',
             )
         );
@@ -323,9 +334,9 @@ final class Advanced_Elements_Elementor_Addon {
                 'name'          => __('Footer Quick Links', 'advanced-elements-elementor'),
                 'id'            => 'footer-quick-links',
                 'description'   => __('Widgets in this area will appear in the quick links section of the footer.', 'advanced-elements-elementor'),
-                'before_widget' => '<div class="footer-about-widget %2$s support-links">',
+                'before_widget' => '<div class="footer-quick-links-widget %2$s support-links">',
                 'after_widget'  => '</div>',
-                'before_title'  => '<h5 class="footer-about-title">',
+                'before_title'  => '<h5 class="footer-quick-llinks-title">',
                 'after_title'   => '</h5>',
             )
         );
@@ -334,9 +345,9 @@ final class Advanced_Elements_Elementor_Addon {
                 'name'          => __('Footer Contact', 'advanced-elements-elementor'),
                 'id'            => 'footer-contact',
                 'description'   => __('Widgets in this area will appear in the contanct section of the footer.', 'advanced-elements-elementor'),
-                'before_widget' => '<div class="footer-about-widget %2$s">',
+                'before_widget' => '<div class="footer-contact-widget %2$s">',
                 'after_widget'  => '</div>',
-                'before_title'  => '<h4 class="footer-about-title">',
+                'before_title'  => '<h4 class="footer-contact-title">',
                 'after_title'   => '</h4>',
             )
         );
@@ -356,8 +367,8 @@ final class Advanced_Elements_Elementor_Addon {
                             </div>
     
                             <!-- Newsletter Subscription -->
-                            <div class="col col-lg-6 col-center-mobile"
-                                style="display: flex; align-self: center; justify-content: end;">
+                            <div class="col col-lg-6 col-center-mobile">
+                                <?php dynamic_sidebar('footer-subscription'); ?>
                                 <?php dynamic_sidebar('footer-social'); ?>
                             </div>
                             <div class="empty-space"></div>
