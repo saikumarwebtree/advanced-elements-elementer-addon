@@ -1953,9 +1953,9 @@ class Courses_Showcase_Widget extends Widget_Base
         // Extract course data
         $course_title = !empty($course_data['course_title']) ? $course_data['course_title'] : 'Course Title';
         $course_image = !empty($course_data['course_image']['url']) ? $course_data['course_image']['url'] : \Elementor\Utils::get_placeholder_image_src();
-        $course_lessons = !empty($course_data['course_lessons']) ? $course_data['course_lessons'] : '10';
-        $course_duration = !empty($course_data['course_duration']) ? $course_data['course_duration'] : '5h 30m';
-        $course_price = !empty($course_data['course_price']) ? $course_data['course_price'] : '$99';
+        $course_lessons = !empty($course_data['course_lessons']) ? $course_data['course_lessons'] : '';
+        $course_duration = !empty($course_data['course_duration']) ? $course_data['course_duration'] : '';
+        $course_price = !empty($course_data['course_price']) ? $course_data['course_price'] : '';
         $course_regular_price = !empty($course_data['course_regular_price']) ? $course_data['course_regular_price'] : '';
         $course_rating = !empty($course_data['course_rating']) ? floatval($course_data['course_rating']) : 0;
         $course_rating_count = !empty($course_data['course_rating_count']) ? intval($course_data['course_rating_count']) : 0;
@@ -2006,18 +2006,23 @@ class Courses_Showcase_Widget extends Widget_Base
 
                 <?php if ('yes' === $settings['show_product_meta']): ?>
                     <div class="course-card-meta">
+                        <?php if($course_lessons): ?>
                         <span class="course-card-lessons">
                             <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?>
                             <?php echo esc_html($course_lessons); ?>
                         </span>
+                        <?php endif; ?>
+                        <?php if($course_duration): ?>
                         <span class="course-card-duration">
                             <i class="fas fa-clock"></i> <?php echo esc_html($course_duration); ?>
                         </span>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ('yes' === $settings['show_price']): ?>
                     <div class="course-card-price-container">
+                        <?php if($course_price || $course_regular_price): ?>
                         <div class="course-card-price">
                             <?php
                             // Display price with sale price if available
@@ -2029,6 +2034,7 @@ class Courses_Showcase_Widget extends Widget_Base
                             }
                             ?>
                         </div>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </div>
