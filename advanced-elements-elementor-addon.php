@@ -393,8 +393,7 @@ final class Advanced_Elements_Elementor_Addon {
     
                 <div class="container">
                     <div class="copyright">
-                        <p><?= date('Y'); ?> © Copyright <b>Flowthermolab</b>. All Rights Reserved | Powered by 
-                                <a href="https://webtreeonline.com" target="_blank">webtree</a></p>
+                        <p><?= date('Y'); ?> © Copyright <b>Flowthermolab</b>. All Rights Reserved</p>
                     </div>
                 </div>
             </section>

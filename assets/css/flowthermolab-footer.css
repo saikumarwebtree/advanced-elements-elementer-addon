@@ -3,7 +3,11 @@
     padding: 50px 0 20px;
 }
 
-.flowthermolab-footer h5{ margin-bottom: 16px; color: #3B3B3B; line-height: 26px; }
+.flowthermolab-footer h5 {
+    margin-bottom: 16px;
+    color: #3B3B3B;
+    line-height: 26px;
+}
 
 .flowthermolab-footer .container {
     width: 100%;
@@ -34,26 +38,71 @@
 /* Social icons */
 .flowthermolab-footer .social-icons {
     display: flex;
-    margin-top: 20px!important;
+    margin-top: 20px !important;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .flowthermolab-footer .social-icons li {
-    width: 50px;
-    height: 50px;
+    /*width: 50px; height: 50px;*/
     background: #F8F8F8;
     border-radius: 50%;
     margin-right: 15px;
-    padding: 14px;
+    /*padding: 14px;*/
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+}
+
+.flowthermolab-footer .social-icons li:hover {
+    background: #122B4F;
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-5px);
+    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.flowthermolab-footer .social-icons li.facebook:hover {
+    background: #3e61af;
+}
+
+.flowthermolab-footer .social-icons li.twitter:hover {
+    background: #14171A;
+}
+
+.flowthermolab-footer .social-icons li.instagram:hover {
+    background: #FB2E9B;
+}
+
+.flowthermolab-footer .social-icons li.youtube:hover {
+    background: #FF0000;
+}
+
+.flowthermolab-footer .social-icons li.linkedin:hover {
+    background: #0077B5;
 }
 
 .flowthermolab-footer .social-icons a {
     font-size: 20px;
-    margin: 0!important;
+    margin: 0 !important;
+    width: 50px;
+    height: 50px;
+    display: block;
+    padding: 14px;
 }
-.flowthermolab-footer .social-icons a img{ margin: 0 auto; display: block; width: 20px; }
+
+.flowthermolab-footer .social-icons a img {
+    margin: 0 auto;
+    display: block;
+    width: 20px;
+}
+
+.flowthermolab-footer .social-icons li:hover a img {
+    filter: brightness(0) invert(1);
+}
 
 /* Newsletter form */
 .flowthermolab-footer .form-group {
@@ -85,7 +134,8 @@
     border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
-.btn-subscribe{ 
+
+.btn-subscribe {
     display: block;
     background: linear-gradient(225deg, #4e7fce, #4faaff);
     color: #FFFFFF;
@@ -94,7 +144,7 @@
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    position: relative; 
+    position: relative;
 }
 
 .flowthermolab-footer .btn:hover {
@@ -106,14 +156,28 @@
     margin-right: 8px;
     width: 15px;
 }
-.flowthermolab-footer .contact-links a{ text-decoration: none; color: inherit;}
 
-.flowthermolab-footer .support-links ul{ margin: 0; padding: 0; }
+.flowthermolab-footer .contact-links a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.flowthermolab-footer .support-links ul {
+    margin: 0;
+    padding: 0;
+}
+
 .flowthermolab-footer .support-links ul li {
-    margin-bottom: 8px!important;
+    margin-bottom: 8px !important;
     list-style: none;
 }
-.flowthermolab-footer .support-links ul li a{ color: #000!important; text-decoration: none; font-weight: 400!important; padding: 0!important }
+
+.flowthermolab-footer .support-links ul li a {
+    color: #000 !important;
+    text-decoration: none;
+    font-weight: 400 !important;
+    padding: 0 !important
+}
 
 /* Copyright section */
 .flowthermolab-footer .copyright {
@@ -122,7 +186,9 @@
     padding-top: 20px;
 }
 
-.flowthermolab-footer .empty-space{ padding: 20px; }
+.flowthermolab-footer .empty-space {
+    padding: 20px;
+}
 
 /* Responsive styles */
 @media (min-width: 768px) {
