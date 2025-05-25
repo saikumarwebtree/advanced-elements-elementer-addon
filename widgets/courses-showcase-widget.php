@@ -225,6 +225,152 @@ class Courses_Showcase_Widget extends Widget_Base
                     'custom' => esc_html__('Custom Selection', 'advanced-elements-elementor'),
                     'ld_category' => esc_html__('LearnDash Course Category', 'advanced-elements-elementor'),
                     'ld_custom' => esc_html__('LearnDash Custom Courses', 'advanced-elements-elementor'),
+                    'manual_courses' => esc_html__('Manual Course Creation', 'advanced-elements-elementor'),
+                ],
+            ]
+        );
+
+        // Manual Course Creation Repeater
+        $course_repeater = new \Elementor\Repeater();
+
+        $course_repeater->add_control(
+            'course_image',
+            [
+                'label' => esc_html__('Course Image', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_title',
+            [
+                'label' => esc_html__('Course Title', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('Course Title', 'advanced-elements-elementor'),
+                'placeholder' => esc_html__('Enter course title', 'advanced-elements-elementor'),
+                'label_block' => true,
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_lessons',
+            [
+                'label' => esc_html__('Number of Lessons', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '10',
+                'placeholder' => esc_html__('e.g., 10', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_duration',
+            [
+                'label' => esc_html__('Course Duration', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '5h 30m',
+                'placeholder' => esc_html__('e.g., 5h 30m', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_price',
+            [
+                'label' => esc_html__('Course Price', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '$99',
+                'placeholder' => esc_html__('e.g., $99 or Free', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_regular_price',
+            [
+                'label' => esc_html__('Regular Price (Optional)', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '',
+                'placeholder' => esc_html__('e.g., $149', 'advanced-elements-elementor'),
+                'description' => esc_html__('Leave empty if no discount price', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_link',
+            [
+                'label' => esc_html__('Course Link', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-course-link.com', 'advanced-elements-elementor'),
+                'default' => [
+                    'url' => '#',
+                    'is_external' => false,
+                    'nofollow' => false,
+                ],
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_rating',
+            [
+                'label' => esc_html__('Course Rating', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 5,
+                'step' => 0.1,
+                'default' => 4.5,
+                'description' => esc_html__('Enter rating from 0 to 5', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_rating_count',
+            [
+                'label' => esc_html__('Rating Count', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'min' => 0,
+                'default' => 125,
+                'description' => esc_html__('Number of people who rated', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $course_repeater->add_control(
+            'course_badge',
+            [
+                'label' => esc_html__('Course Badge (Optional)', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '',
+                'placeholder' => esc_html__('e.g., Bestseller, New', 'advanced-elements-elementor'),
+            ]
+        );
+
+        $repeater->add_control(
+            'manual_courses',
+            [
+                'label' => esc_html__('Manual Courses', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $course_repeater->get_controls(),
+                'default' => [
+                    [
+                        'course_title' => esc_html__('Sample Course 1', 'advanced-elements-elementor'),
+                        'course_lessons' => '12',
+                        'course_duration' => '6h 45m',
+                        'course_price' => '$99',
+                        'course_rating' => 4.8,
+                        'course_rating_count' => 245,
+                    ],
+                    [
+                        'course_title' => esc_html__('Sample Course 2', 'advanced-elements-elementor'),
+                        'course_lessons' => '8',
+                        'course_duration' => '4h 20m',
+                        'course_price' => '$79',
+                        'course_rating' => 4.6,
+                        'course_rating_count' => 189,
+                    ],
+                ],
+                'title_field' => '{{{ course_title }}}',
+                'condition' => [
+                    'product_source' => 'manual_courses',
                 ],
             ]
         );
@@ -1398,6 +1544,19 @@ class Courses_Showcase_Widget extends Widget_Base
                                                     $this->render_course_card($course, $settings);
                                                 }
                                             }
+                                        } elseif ($tab['product_source'] === 'manual_courses' && !empty($tab['manual_courses'])) {
+                                            // Get manual courses
+                                            $manual_courses = $tab['manual_courses'];
+                                            
+                                            // Limit to the specified number if needed
+                                            if ($settings['number_of_products'] > 0) {
+                                                $manual_courses = array_slice($manual_courses, 0, $settings['number_of_products']);
+                                            }
+                                            
+                                            // Render the manual courses
+                                            foreach ($manual_courses as $course_data) {
+                                                $this->render_manual_course_card($course_data, $settings);
+                                            }
                                         }
                                     }
 
@@ -1511,6 +1670,19 @@ class Courses_Showcase_Widget extends Widget_Base
                                             if ($course) {
                                                 $this->render_course_card($course, $settings);
                                             }
+                                        }
+                                    } elseif ($tab['product_source'] === 'manual_courses' && !empty($tab['manual_courses'])) {
+                                        // Get manual courses
+                                        $manual_courses = $tab['manual_courses'];
+                                        
+                                        // Limit to the specified number if needed
+                                        if ($settings['number_of_products'] > 0) {
+                                            $manual_courses = array_slice($manual_courses, 0, $settings['number_of_products']);
+                                        }
+                                        
+                                        // Render the manual courses
+                                        foreach ($manual_courses as $course_data) {
+                                            $this->render_manual_course_card($course_data, $settings);
                                         }
                                     }
 
@@ -1763,6 +1935,97 @@ class Courses_Showcase_Widget extends Widget_Base
                                 }
                             } else {
                                 echo wp_kses_post($price);
+                            }
+                            ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * Render a manual course card
+     */
+    private function render_manual_course_card($course_data, $settings)
+    {
+        // Extract course data
+        $course_title = !empty($course_data['course_title']) ? $course_data['course_title'] : 'Course Title';
+        $course_image = !empty($course_data['course_image']['url']) ? $course_data['course_image']['url'] : \Elementor\Utils::get_placeholder_image_src();
+        $course_lessons = !empty($course_data['course_lessons']) ? $course_data['course_lessons'] : '10';
+        $course_duration = !empty($course_data['course_duration']) ? $course_data['course_duration'] : '5h 30m';
+        $course_price = !empty($course_data['course_price']) ? $course_data['course_price'] : '$99';
+        $course_regular_price = !empty($course_data['course_regular_price']) ? $course_data['course_regular_price'] : '';
+        $course_rating = !empty($course_data['course_rating']) ? floatval($course_data['course_rating']) : 0;
+        $course_rating_count = !empty($course_data['course_rating_count']) ? intval($course_data['course_rating_count']) : 0;
+        $course_badge = !empty($course_data['course_badge']) ? $course_data['course_badge'] : '';
+        
+        // Course link
+        $course_link = !empty($course_data['course_link']['url']) ? $course_data['course_link']['url'] : '#';
+        $course_target = !empty($course_data['course_link']['is_external']) ? ' target="_blank"' : '';
+        $course_nofollow = !empty($course_data['course_link']['nofollow']) ? ' rel="nofollow"' : '';
+        ?>
+        <div class="course-card">
+            <?php if (!empty($course_badge)): ?>
+                <div class="course-card-badge"><?php echo esc_html($course_badge); ?></div>
+            <?php endif; ?>
+
+            <div class="course-card-image">
+                <img src="<?php echo esc_url($course_image); ?>" alt="<?php echo esc_attr($course_title); ?>">
+            </div>
+
+            <div class="course-card-content">
+                <?php if ('yes' === $settings['show_rating'] && $course_rating > 0): ?>
+                    <div class="course-card-rating">
+                        <?php
+                        // Display stars
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= floor($course_rating)) {
+                                echo '<i class="fas fa-star"></i>';
+                            } elseif ($i - 0.5 <= $course_rating) {
+                                echo '<i class="fas fa-star-half-alt"></i>';
+                            } else {
+                                echo '<i class="far fa-star"></i>';
+                            }
+                        }
+
+                        // Display rating count
+                        if ($course_rating_count > 0) {
+                            echo '(' . number_format_i18n($course_rating_count) . ')';
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
+
+                <h3 class="course-card-title">
+                    <a href="<?php echo esc_url($course_link); ?>" <?php echo $course_target . $course_nofollow; ?>>
+                        <?php echo esc_html($course_title); ?>
+                    </a>
+                </h3>
+
+                <?php if ('yes' === $settings['show_product_meta']): ?>
+                    <div class="course-card-meta">
+                        <span class="course-card-lessons">
+                            <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?>
+                            <?php echo esc_html($course_lessons); ?>
+                        </span>
+                        <span class="course-card-duration">
+                            <i class="fas fa-clock"></i> <?php echo esc_html($course_duration); ?>
+                        </span>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ('yes' === $settings['show_price']): ?>
+                    <div class="course-card-price-container">
+                        <div class="course-card-price">
+                            <?php
+                            // Display price with sale price if available
+                            if (!empty($course_regular_price) && 'yes' === $settings['show_sale_price']) {
+                                echo '<span class="course-card-sale-price">' . esc_html($course_price) . '</span> ';
+                                echo '<span class="course-card-regular-price"><del>' . esc_html($course_regular_price) . '</del></span>';
+                            } else {
+                                echo esc_html($course_price);
                             }
                             ?>
                         </div>
