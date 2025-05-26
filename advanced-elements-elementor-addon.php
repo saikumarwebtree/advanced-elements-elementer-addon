@@ -367,7 +367,7 @@ final class Advanced_Elements_Elementor_Addon {
                             </div>
     
                             <!-- Newsletter Subscription -->
-                            <div class="col col-lg-6 col-center-mobile">
+                            <div class="col col-lg-6 col-center-mobile align-self-center">
                                 <?php dynamic_sidebar('footer-subscription'); ?>
                                 <?php dynamic_sidebar('footer-social'); ?>
                             </div>

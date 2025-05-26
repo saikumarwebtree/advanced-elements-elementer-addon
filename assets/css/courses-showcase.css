@@ -366,7 +366,7 @@
 }
 
 .promise-text{ align-self: center;
-    max-width: 50%;
+    max-width: 300px;
     text-align: left;
     padding: 20px 50px 20px 30px;
     margin: 0;
@@ -392,7 +392,7 @@
 
 .badge-circle-button-container .circle-button .play-icon {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 40px;
@@ -439,6 +439,8 @@
     .courses-showcase-container{ padding: 20px!important; flex-direction: column-reverse; }
     .courses-header-left{ max-width: 100%; text-align: center; }
     .badge-circle-button-container{ margin: 0 auto 60px; }
-    .badge-circle-button-container .circle-button{ width: 80px; height: 80px; }
+    .badge-circle-button-container .circle-button{ width: 140px; height: 140px; }
     .badge-circle-button-container .circle-button .text-ring{ width: 150px; height: 150px; }
+    .promise-text p{ line-height: 1.5; font-size: 15px; }
+    .promise-text{ max-width: 70%; }
 }
