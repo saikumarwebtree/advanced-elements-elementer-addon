@@ -1,0 +1,476 @@
+/* Promotional Slider Widget - CSS Styles */
+
+.promo-slider-container {
+    background-color: transparent!important;
+    padding: 60px 20px;
+    overflow: hidden;
+}
+
+/* Slider Base Styles */
+.promo-slider {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.promo-slide-wrapper {
+    padding: 0;
+    outline: none;
+}
+
+.promo-slide {
+    background: transparent;
+    border-radius: 20px;
+    min-height: 320px;
+    display: flex !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0!important;
+    background: transparent!important;
+}
+
+.promo-slide:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); */
+}
+
+/* Two Section Layout */
+.left-section {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: relative;
+}
+
+.right-section {
+    flex: 1;
+    /* background: linear-gradient(135deg, #4a89dc 0%, #667eea 100%); */
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: #ffffff;
+    position: relative;
+}
+
+/* Left Section Content */
+.discount-content {
+    text-align: left;
+    width: 100%;
+}
+
+.discount-percentage {
+    color: #173D7A!important;
+    font-size: 96px!important;
+    font-weight: 800;
+    line-height: 1!important;
+    color: #0D1B32;
+    margin: 0 0 5px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.discount-text {
+    color: #173D7A!important;
+    font-size: 48px!important;
+    font-weight: 700;
+    color: #0D1B32;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+}
+
+.left-description {
+    font-size: 20px!important;
+    line-height: 1.5;
+    color: #5A6E8F!important;
+    margin: 0;
+}
+
+/* Right Section Content */
+.product-content {
+    width: 100%;
+    text-align: left;
+}
+
+.product-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.product-description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #bbbbbb;
+    margin: 0 0 25px 0;
+}
+
+/* Features List Styles */
+.features-list {
+    /* padding: 0; */
+    margin: 0 0 30px 0;
+}
+
+.features-list li {
+    font-size: 14px;
+    margin-bottom: 12px;
+    /* padding-left: 20px; */
+    position: relative;
+    line-height: 1.4;
+    color: #bbbbbb!important;
+}
+
+
+
+/* Button Styles */
+.button-section {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.promo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 32px;
+    background-color: #3a7bd5;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
+}
+
+.promo-button:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(58, 123, 213, 0.4);
+}
+
+/* Slick Slider Customization */
+.promo-slider .slick-track {
+    display: flex;
+    align-items: center;
+}
+
+.promo-slider .slick-slide {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.promo-slider .slick-slide .promo-slide {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Dots Styles */
+.promo-slider .slick-dots {
+    bottom: -60px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.promo-slider .slick-dots li {
+    margin: 0 8px;
+}
+
+.promo-slider .slick-dots li button {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+}
+
+.promo-slider .slick-dots li button:before {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.promo-slider .slick-dots li.slick-active button:before {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+/* Arrow Styles (if enabled) */
+.promo-slider .slick-prev,
+.promo-slider .slick-next {
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.promo-slider .slick-prev:hover,
+.promo-slider .slick-next:hover {
+    background-color: #ffffff;
+    transform: scale(1.1);
+}
+
+.promo-slider .slick-prev {
+    left: 30px;
+}
+
+.promo-slider .slick-next {
+    right: 30px;
+}
+
+.promo-slider .slick-prev:before,
+.promo-slider .slick-next:before {
+    color: #0D1B32;
+    font-size: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .left-section,
+    .right-section {
+        padding: 40px 30px;
+    }
+    
+    .discount-percentage {
+        font-size: 70px;
+    }
+    
+    .product-title {
+        font-size: 28px;
+    }
+    
+    .promo-slide {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .promo-slider-container {
+        padding: 40px 15px;
+    }
+    
+    .promo-slide {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .left-section {
+        border-radius: 20px 20px 0 0;
+        padding: 30px 25px;
+    }
+    
+    .right-section {
+        border-radius: 0 0 20px 20px;
+        padding: 30px 25px;
+    }
+    
+    .discount-content {
+        text-align: center;
+    }
+    
+    .product-content {
+        text-align: left;
+    }
+    
+    .discount-percentage {
+        font-size: 60px;
+    }
+    
+    .discount-text {
+        font-size: 20px;
+    }
+    
+    .product-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .left-description,
+    .product-description {
+        font-size: 14px;
+        max-width: 100%;
+    }
+    
+    .features-list {
+        text-align: left;
+        /* max-width: 300px; */
+        /* margin: 20px auto 25px auto; */
+    }
+    
+    .promo-button {
+        padding: 10px 24px;
+        font-size: 14px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-section,
+    .right-section {
+        padding: 25px 20px;
+    }
+    
+    .discount-percentage {
+        font-size: 50px;
+    }
+    
+    .discount-text {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+    
+    .product-title {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    
+    .left-description,
+    .product-description {
+        font-size: 13px;
+    }
+    
+    .features-list li {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .promo-button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .promo-slider .slick-dots {
+        margin-top: 25px;
+    }
+}
+
+/* Remove center mode specific effects */
+.promo-slider .slick-slide .promo-slide {
+    cursor: default;
+}
+
+.promo-slider .slick-slide .promo-slide:hover {
+    transform: translateY(-5px);
+}
+
+/* Enhanced slide animation */
+.promo-slider .slick-slide {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Loading Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.promo-slide {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Enhanced Button Animation */
+.promo-button {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 50px!important;
+    background: linear-gradient(125deg, #4E7FCE, #4FAAFF)!important;
+}
+
+.promo-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.promo-button:hover::before {
+    left: 100%;
+}
+
+/* Gradient Animation for Right Section */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.right-section {
+    background: #0E2853!important;
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+    border: none; box-shadow: none;
+    outline: none;
+}
+
+/* Enhanced slide animations */
+.promo-slider .slick-active .left-section {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.promo-slider .slick-active .right-section {
+    animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

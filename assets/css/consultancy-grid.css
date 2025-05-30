@@ -749,8 +749,10 @@ body.popup-open {
 
 /* Enhanced visual effects */
 .customer-logo-item {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
+    /* -webkit-backdrop-filter: blur(10px); */
+    background: #ffffff!important;
+    padding: 5px!important;
 }
 
 /* Alternative styles for different themes */
