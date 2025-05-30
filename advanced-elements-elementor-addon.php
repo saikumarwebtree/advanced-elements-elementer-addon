@@ -189,6 +189,7 @@ final class Advanced_Elements_Elementor_Addon {
         require_once(__DIR__ . '/widgets/hero-banner-widget.php');
         require_once(__DIR__ . '/widgets/contact-widget.php');
         require_once(__DIR__ . '/widgets/promotional-slider.php');
+        require_once(__DIR__ . '/widgets/separator-widget.php');
         // Register widgets
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Platform_Card_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Learn_Grow_Step_Widget());
@@ -204,6 +205,7 @@ final class Advanced_Elements_Elementor_Addon {
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Hero_Banner_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Contact_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Promo_Slider_Widget());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Separator_Widget());
     }
 
     /**
