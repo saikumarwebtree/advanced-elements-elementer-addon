@@ -17,6 +17,8 @@
     padding: 0 15px;
 }
 
+.footer-logo img{ max-width: 200px; }
+
 .footer-content {
     background: #ffffff;
     border-radius: 30px;

@@ -6,22 +6,22 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Separator Widget
+ * Custom Separator Widget
  */
-class Separator_Widget extends Widget_Base {
+class Custom_Separator_Widget extends Widget_Base {
 
     /**
      * Get widget name
      */
     public function get_name() {
-        return 'separator';
+        return 'custom_separator';
     }
 
     /**
      * Get widget title
      */
     public function get_title() {
-        return esc_html__('Separator', 'advanced-elements-elementor');
+        return esc_html__('Custom Separator', 'advanced-elements-elementor');
     }
 
     /**
@@ -35,7 +35,7 @@ class Separator_Widget extends Widget_Base {
      * Get widget keywords
      */
     public function get_keywords() {
-        return ['separator', 'divider', 'line', 'break', 'section'];
+        return ['separator', 'divider', 'line', 'break', 'section', 'custom'];
     }
 
     /**
@@ -105,6 +105,7 @@ class Separator_Widget extends Widget_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .separator-line img' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .separator-line svg' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_separator' => 'yes',
@@ -377,6 +378,11 @@ class Separator_Widget extends Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         
+        // Check if separator should be shown
+        if ('yes' !== $settings['show_separator']) {
+            return;
+        }
+        
         // Animation classes
         $animation_class = '';
         $animation_data = '';
@@ -388,16 +394,27 @@ class Separator_Widget extends Widget_Base {
             }
         }
         ?>
-        <?php if (!empty($settings['end_line_image']['url'])) : ?>
-            <div class="course-advantages-end-line animate-on-scroll" data-animation="animate__fadeInUp">
+        <div class="custom-separator">
+            <!-- <div class="separator-line <?php echo esc_attr($animation_class); ?>"<?php echo $animation_data; ?>> -->
+            <div class="course-advantages-end-line animate-on-scroll" data-animation="animate__fadeInUp"></div>
                 <?php if (!empty($settings['separator_image']['url'])) : ?>
-                    <img src="<?php echo esc_url($settings['separator_image']['url']); ?>" alt="Separator Line" />
-                <?php else: ?>
-                    <img src="<?php echo esc_url(plugins_url('assets/images/course-advantages-end-line.svg', dirname(__FILE__))); ?>" alt="Course Advantages End Line">
+                    <?php
+                    $image_url = $settings['separator_image']['url'];
+                    $image_alt = !empty($settings['separator_image']['alt']) ? $settings['separator_image']['alt'] : 'Separator';
+                    
+                    // Check if it's an SVG file
+                    $file_extension = pathinfo($image_url, PATHINFO_EXTENSION);
+                    if (strtolower($file_extension) === 'svg') {
+                        // For SVG files, we'll use img tag but ensure proper styling
+                        echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" />';
+                    } else {
+                        // For other image formats
+                        echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" />';
+                    }
+                    ?>
                 <?php endif; ?>
             </div>
-        <?php endif; ?>
-        
+        </div>
         <?php
     }
 }
