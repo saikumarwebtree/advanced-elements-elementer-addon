@@ -190,12 +190,14 @@
 }
 
 @media screen and (max-width: 668px){
-    .cloud-computing-content{ margin: 0 auto 60px!important; }
+    .why-choose-container{ padding: 0 20px!important; }
+    .cloud-computing-content{ margin: 0 auto 30px!important; }
+    .why-choose-header{ margin-bottom: 30px!important; }
+    .why-choose-button-container{ margin: 40px 0!important; }
 }
 
 @media (max-width: 479px) {
     .statistics-grid {
         grid-template-columns: 1fr;
     }
-    .why-choose-container{ padding: 20px!important; }
 }

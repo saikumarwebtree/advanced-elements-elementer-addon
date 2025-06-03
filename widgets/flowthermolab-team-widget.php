@@ -1364,6 +1364,7 @@ class Flowthermolab_Team_Widget extends Widget_Base {
                     </div>
                 <?php endif; ?>
                 
+                <?php if (!empty($settings['subtitle'])) : ?>
                 <!-- Header Section -->
                 <div class="team-header animate-on-scroll" data-animation="animate__fadeInUp">
                     <?php if (!empty($settings['subtitle'])) : ?>
@@ -1378,9 +1379,10 @@ class Flowthermolab_Team_Widget extends Widget_Base {
                         <p class="team-description"><?php echo esc_html($settings['description']); ?></p>
                     <?php endif; ?>
                 </div>
+                <?php endif; ?>
                 
                 <!-- Team Members Section -->
-                <?php if (!empty($settings['team_members'])) : ?>
+                <?php if (!empty($settings['team_members']) && $settings['team_members'][0]['member_name'] != '') : ?>
                     <div class="team-members-section animate-on-scroll" data-animation="animate__fadeInUp">
                         <div class="team-members-grid">
                             <?php foreach ($settings['team_members'] as $index => $member) : 

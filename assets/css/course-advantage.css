@@ -110,7 +110,7 @@
 
 @media (max-width: 767px) {
     .advantage-title {
-        font-size: 28px;
+        font-size: 32px;
     }
     
     .advantage-description {
@@ -118,15 +118,18 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 668px) {
     .advantage-content{ margin: 0 auto 70px }
     .advantage-grid {
-        grid-template-columns: repeat(1, 1fr)!important;
+        display: block;
+        /* grid-template-columns: repeat(1, 1fr)!important; */
     }
     
-    .advantage-title {
+    /*.advantage-title {
         font-size: 24px;
-    }
+    }*/
+    .advantage-container{ padding: 30px 20px!important; }
+    .advantage-header{ margin-bottom: 30px!important; }
 }
 
 .course-advantages-end-line{position: absolute; bottom: 0; left: -1%; width: 102%; display: block;}

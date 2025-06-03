@@ -14,7 +14,7 @@
     /* max-width: 85%; */
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0;
 }
 
 .footer-logo img{ max-width: 200px; }
@@ -23,7 +23,7 @@
     background: #ffffff;
     border-radius: 30px;
     padding: 70px 80px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .flowthermolab-footer .row {
@@ -187,6 +187,8 @@
     color: #fff;
     padding-top: 20px;
 }
+
+.flowthermolab-footer .copyright p{ margin-bottom: 0; }
 
 .flowthermolab-footer .empty-space {
     padding: 0px;
@@ -409,4 +411,9 @@
     background-color: #fef2f2;
     color: #dc2626;
     border: 1px solid #fecaca;
+}
+
+@media screen and (max-width: 668px){
+    .flowthermolab-footer .container{ width: 90%; }
+    .flowthermolab-footer .col{ width: 100%!important; }
 }

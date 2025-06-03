@@ -396,7 +396,7 @@ class Custom_Separator_Widget extends Widget_Base {
         ?>
         <div class="custom-separator">
             <!-- <div class="separator-line <?php echo esc_attr($animation_class); ?>"<?php echo $animation_data; ?>> -->
-            <div class="course-advantages-end-line animate-on-scroll" data-animation="animate__fadeInUp"></div>
+            <div class="course-advantages-end-line animate-on-scroll" data-animation="animate__fadeInUp" style="left: 0; width: 100%;">
                 <?php if (!empty($settings['separator_image']['url'])) : ?>
                     <?php
                     $image_url = $settings['separator_image']['url'];
