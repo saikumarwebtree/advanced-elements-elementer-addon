@@ -115,12 +115,25 @@ class Consultancy_Grid_Widget extends Widget_Base {
 
         $this->end_controls_section();
 
-        // Main Image Section
+        // Left Content Section
         $this->start_controls_section(
-            'section_main_image',
+            'section_left_content',
             [
-                'label' => esc_html__('Main Images', 'advanced-elements-elementor'),
+                'label' => esc_html__('Left Content', 'advanced-elements-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'left_content_type',
+            [
+                'label' => esc_html__('Content Type', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'image',
+                'options' => [
+                    'image' => esc_html__('Image', 'advanced-elements-elementor'),
+                    'feature' => esc_html__('Feature Box (Icon + Text)', 'advanced-elements-elementor'),
+                ],
             ]
         );
 
@@ -132,6 +145,78 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
+                'condition' => [
+                    'left_content_type' => 'image',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'primary_feature_icon',
+            [
+                'label' => esc_html__('Feature Icon', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-cogs',
+                    'library' => 'fa-solid',
+                ],
+                'condition' => [
+                    'left_content_type' => 'feature',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'primary_feature_title',
+            [
+                'label' => esc_html__('Feature Title', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('Expert Solutions', 'advanced-elements-elementor'),
+                'placeholder' => esc_html__('Enter feature title', 'advanced-elements-elementor'),
+                'condition' => [
+                    'left_content_type' => 'feature',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'primary_feature_link',
+            [
+                'label' => esc_html__('Feature Link', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-link.com', 'advanced-elements-elementor'),
+                'default' => [
+                    'url' => '#',
+                    'is_external' => false,
+                    'nofollow' => false,
+                ],
+                'condition' => [
+                    'left_content_type' => 'feature',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // Right Content Section
+        $this->start_controls_section(
+            'section_right_content',
+            [
+                'label' => esc_html__('Right Content', 'advanced-elements-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'right_content_type',
+            [
+                'label' => esc_html__('Content Type', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'image',
+                'options' => [
+                    'image' => esc_html__('Image', 'advanced-elements-elementor'),
+                    'video' => esc_html__('Video', 'advanced-elements-elementor'),
+                ],
             ]
         );
 
@@ -142,6 +227,64 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'condition' => [
+                    'right_content_type' => 'image',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'video_url',
+            [
+                'label' => esc_html__('Video URL', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://www.youtube.com/watch?v=VIDEO_ID', 'advanced-elements-elementor'),
+                'description' => esc_html__('Enter YouTube, Vimeo, or direct video URL', 'advanced-elements-elementor'),
+                'default' => [
+                    'url' => '',
+                ],
+                'condition' => [
+                    'right_content_type' => 'video',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'video_controls',
+            [
+                'label' => esc_html__('Show Video Controls', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'description' => esc_html__('Show or hide video player controls', 'advanced-elements-elementor'),
+                'condition' => [
+                    'right_content_type' => 'video',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'video_autoplay',
+            [
+                'label' => esc_html__('Autoplay Video', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => '',
+                'description' => esc_html__('Enable video autoplay (may not work on all devices)', 'advanced-elements-elementor'),
+                'condition' => [
+                    'right_content_type' => 'video',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'video_muted',
+            [
+                'label' => esc_html__('Mute Video', 'advanced-elements-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'description' => esc_html__('Start video muted (required for autoplay)', 'advanced-elements-elementor'),
+                'condition' => [
+                    'right_content_type' => 'video',
                 ],
             ]
         );
@@ -173,7 +316,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
         $this->add_control(
             'circular_button_icon',
             [
-                'label' => esc_html__('Play Icon', 'advanced-elements-elementor'),
+                'label' => esc_html__('Button Icon', 'advanced-elements-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-play',
@@ -182,50 +325,10 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'recommended' => [
                     'fa-solid' => [
                         'play',
-                        'play-circle',
+                        'arrow-right',
+                        'external-link-alt',
                     ],
                 ],
-            ]
-        );
-
-        $this->add_control(
-            'video_url',
-            [
-                'label' => esc_html__('Video URL', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://www.youtube.com/watch?v=VIDEO_ID', 'advanced-elements-elementor'),
-                'description' => esc_html__('Enter YouTube or Vimeo URL', 'advanced-elements-elementor'),
-                'default' => [
-                    'url' => '',
-                ],
-                'separator' => 'before',
-            ]
-        );
-        
-        $this->add_control(
-            'video_play_on_mobile',
-            [
-                'label' => esc_html__('Play on Mobile', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'default' => 'yes',
-                'description' => esc_html__('Enable or disable video autoplay on mobile devices', 'advanced-elements-elementor'),
-            ]
-        );
-        
-        $this->add_control(
-            'video_aspect_ratio',
-            [
-                'label' => esc_html__('Aspect Ratio', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'options' => [
-                    '169' => '16:9',
-                    '219' => '21:9',
-                    '43' => '4:3',
-                    '32' => '3:2',
-                    '11' => '1:1',
-                ],
-                'default' => '169',
-                'description' => esc_html__('Select the aspect ratio of the video', 'advanced-elements-elementor'),
             ]
         );
 
@@ -467,6 +570,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'default' => '#1c2432',
                 'selectors' => [
                     '{{WRAPPER}} .feature-box' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .primary-feature-box' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -479,6 +583,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'default' => '#ffffff',
                 'selectors' => [
                     '{{WRAPPER}} .feature-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .primary-feature-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -492,6 +597,8 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .feature-icon i' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .feature-icon svg' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .primary-feature-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .primary-feature-icon svg' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -519,6 +626,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .feature-box' => 'border-radius: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .primary-feature-box' => 'border-radius: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -541,7 +649,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#2d7bcb',
                 'selectors' => [
-                    '{{WRAPPER}} .circular-button' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .circle-button' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -553,7 +661,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .circular-button' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .circle-button text' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -565,8 +673,8 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .circular-button .play-icon' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .circular-button .play-icon svg' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .circle-button .play-icon' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .circle-button .play-icon svg' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -589,7 +697,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                     'size' => 120,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .circular-button' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .circle-button' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -704,23 +812,6 @@ class Consultancy_Grid_Widget extends Widget_Base {
         );
 
         $this->add_control(
-            'curve_divider_position',
-            [
-                'label' => esc_html__('Position', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'bottom',
-                'options' => [
-                    'bottom' => esc_html__('Bottom', 'advanced-elements-elementor'),
-                    'top' => esc_html__('Top', 'advanced-elements-elementor'),
-                    'both' => esc_html__('Both', 'advanced-elements-elementor'),
-                ],
-                'condition' => [
-                    'show_curve_divider' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'curve_divider_color',
             [
                 'label' => esc_html__('Curve Color', 'advanced-elements-elementor'),
@@ -728,40 +819,6 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 'default' => '#4a89dc',
                 'selectors' => [
                     '{{WRAPPER}} .curve-divider .curve-svg path' => 'fill: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show_curve_divider' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'curve_divider_height',
-            [
-                'label' => esc_html__('Height', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', 'vh', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 20,
-                        'max' => 300,
-                        'step' => 1,
-                    ],
-                    'vh' => [
-                        'min' => 1,
-                        'max' => 20,
-                    ],
-                    '%' => [
-                        'min' => 1,
-                        'max' => 20,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 100,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .curve-divider' => 'height: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_curve_divider' => 'yes',
@@ -782,926 +839,40 @@ class Consultancy_Grid_Widget extends Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'flip_curve',
-            [
-                'label' => esc_html__('Flip Curve', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => '',
-                'condition' => [
-                    'show_curve_divider' => 'yes',
-                ],
-            ]
-        );
-
         $this->end_controls_section();
-
-        // Customer Logos Section
-        $this->start_controls_section(
-            'section_customer_logos',
-            [
-                'label' => esc_html__('Customer Logos', 'advanced-elements-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            'show_customer_logos',
-            [
-                'label' => esc_html__('Show Customer Logos', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'logos_title',
-            [
-                'label' => esc_html__('Section Title', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Our Happy Customers', 'advanced-elements-elementor'),
-                'placeholder' => esc_html__('Enter section title', 'advanced-elements-elementor'),
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logos_subtitle',
-            [
-                'label' => esc_html__('Section Subtitle', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('From beginner to advanced, our courses empower you with practical skills in CFD, FEA, and more.', 'advanced-elements-elementor'),
-                'placeholder' => esc_html__('Enter section subtitle', 'advanced-elements-elementor'),
-                'rows' => 3,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $repeater_logos = new \Elementor\Repeater();
-
-        $repeater_logos->add_control(
-            'customer_logo',
-            [
-                'label' => esc_html__('Customer Logo', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-            ]
-        );
-
-        $repeater_logos->add_control(
-            'customer_name',
-            [
-                'label' => esc_html__('Customer Name', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Customer Name', 'advanced-elements-elementor'),
-                'placeholder' => esc_html__('Enter customer name', 'advanced-elements-elementor'),
-            ]
-        );
-
-        $repeater_logos->add_control(
-            'customer_link',
-            [
-                'label' => esc_html__('Customer Link', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://customer-website.com', 'advanced-elements-elementor'),
-                'default' => [
-                    'url' => '',
-                    'is_external' => true,
-                    'nofollow' => false,
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'customer_logos_list',
-            [
-                'label' => esc_html__('Customer Logos', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater_logos->get_controls(),
-                'default' => [
-                    [
-                        'customer_name' => esc_html__('Google', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                    [
-                        'customer_name' => esc_html__('Microsoft', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                    [
-                        'customer_name' => esc_html__('Apple', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                    [
-                        'customer_name' => esc_html__('Amazon', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                ],
-                'title_field' => '{{{ customer_name }}}',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        // Slider Settings
-        $this->add_control(
-            'slider_settings_heading',
-            [
-                'label' => esc_html__('Slider Settings', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_autoplay',
-            [
-                'label' => esc_html__('Autoplay', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => 'yes',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_autoplay_speed',
-            [
-                'label' => esc_html__('Autoplay Speed (ms)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 3000,
-                'min' => 1000,
-                'max' => 10000,
-                'step' => 500,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                    'slider_autoplay' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_speed',
-            [
-                'label' => esc_html__('Animation Speed (ms)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 500,
-                'min' => 100,
-                'max' => 2000,
-                'step' => 100,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_infinite',
-            [
-                'label' => esc_html__('Infinite Loop', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => 'yes',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show_desktop',
-            [
-                'label' => esc_html__('Slides to Show (Desktop)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 4,
-                'min' => 1,
-                'max' => 8,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show_tablet',
-            [
-                'label' => esc_html__('Slides to Show (Tablet)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 3,
-                'min' => 1,
-                'max' => 6,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show_mobile',
-            [
-                'label' => esc_html__('Slides to Show (Mobile)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 2,
-                'min' => 1,
-                'max' => 4,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'show_arrows',
-            [
-                'label' => esc_html__('Show Navigation Arrows', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => '',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'show_dots',
-            [
-                'label' => esc_html__('Show Dots Navigation', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => '',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // Customer Logos Style Section
-        $this->start_controls_section(
-            'section_customer_logos',
-            [
-                'label' => esc_html__('Customer Logos', 'advanced-elements-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            'show_customer_logos',
-            [
-                'label' => esc_html__('Show Customer Logos', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'logos_title',
-            [
-                'label' => esc_html__('Section Title', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Our Happy Customers', 'advanced-elements-elementor'),
-                'placeholder' => esc_html__('Enter section title', 'advanced-elements-elementor'),
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logos_subtitle',
-            [
-                'label' => esc_html__('Section Subtitle', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('From beginner to advanced, our courses empower you with practical skills in CFD, FEA, and more.', 'advanced-elements-elementor'),
-                'placeholder' => esc_html__('Enter section subtitle', 'advanced-elements-elementor'),
-                'rows' => 3,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $repeater_logos = new \Elementor\Repeater();
-
-        $repeater_logos->add_control(
-            'customer_logo',
-            [
-                'label' => esc_html__('Customer Logo', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-            ]
-        );
-
-        $repeater_logos->add_control(
-            'customer_name',
-            [
-                'label' => esc_html__('Customer Name', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Customer Name', 'advanced-elements-elementor'),
-                'placeholder' => esc_html__('Enter customer name', 'advanced-elements-elementor'),
-            ]
-        );
-
-        $repeater_logos->add_control(
-            'customer_link',
-            [
-                'label' => esc_html__('Customer Link', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://customer-website.com', 'advanced-elements-elementor'),
-                'default' => [
-                    'url' => '',
-                    'is_external' => true,
-                    'nofollow' => false,
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'customer_logos_list',
-            [
-                'label' => esc_html__('Customer Logos', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater_logos->get_controls(),
-                'default' => [
-                    [
-                        'customer_name' => esc_html__('Google', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                    [
-                        'customer_name' => esc_html__('Microsoft', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                    [
-                        'customer_name' => esc_html__('Apple', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                    [
-                        'customer_name' => esc_html__('Amazon', 'advanced-elements-elementor'),
-                        'customer_logo' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
-                    ],
-                ],
-                'title_field' => '{{{ customer_name }}}',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        // Slider Settings
-        $this->add_control(
-            'slider_settings_heading',
-            [
-                'label' => esc_html__('Slider Settings', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_autoplay',
-            [
-                'label' => esc_html__('Autoplay', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => 'yes',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_autoplay_speed',
-            [
-                'label' => esc_html__('Autoplay Speed (ms)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 3000,
-                'min' => 1000,
-                'max' => 10000,
-                'step' => 500,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                    'slider_autoplay' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_speed',
-            [
-                'label' => esc_html__('Animation Speed (ms)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 500,
-                'min' => 100,
-                'max' => 2000,
-                'step' => 100,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slider_infinite',
-            [
-                'label' => esc_html__('Infinite Loop', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => 'yes',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show_desktop',
-            [
-                'label' => esc_html__('Slides to Show (Desktop)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 3,
-                'min' => 1,
-                'max' => 6,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show_tablet',
-            [
-                'label' => esc_html__('Slides to Show (Tablet)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 2,
-                'min' => 1,
-                'max' => 4,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show_mobile',
-            [
-                'label' => esc_html__('Slides to Show (Mobile)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 2,
-                'min' => 1,
-                'max' => 4,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'show_arrows',
-            [
-                'label' => esc_html__('Show Navigation Arrows', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => '',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'content_layout',
-            [
-                'label' => esc_html__('Layout', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'horizontal' => [
-                        'title' => esc_html__('Horizontal (Side by Side)', 'advanced-elements-elementor'),
-                        'icon' => 'eicon-columns',
-                    ],
-                    'vertical' => [
-                        'title' => esc_html__('Vertical (Stacked)', 'advanced-elements-elementor'),
-                        'icon' => 'eicon-section',
-                    ],
-                ],
-                'default' => 'horizontal',
-                'tablet_default' => 'vertical',
-                'mobile_default' => 'vertical',
-                'selectors_dictionary' => [
-                    'horizontal' => 'flex-direction: row; text-align: left;',
-                    'vertical' => 'flex-direction: column; text-align: center;',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-content' => '{{VALUE}}',
-                ],
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'show_dots',
-            [
-                'label' => esc_html__('Show Dots Navigation', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'advanced-elements-elementor'),
-                'label_off' => esc_html__('No', 'advanced-elements-elementor'),
-                'default' => '',
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // Customer Logos Style Section
-        $this->start_controls_section(
-            'section_style_customer_logos',
-            [
-                'label' => esc_html__('Customer Logos Style', 'advanced-elements-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'show_customer_logos' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logos_section_background',
-            [
-                'label' => esc_html__('Section Background Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'transparent',
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-section' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logos_section_padding',
-            [
-                'label' => esc_html__('Section Padding', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'default' => [
-                    'top' => '60',
-                    'right' => '20',
-                    'bottom' => '60',
-                    'left' => '20',
-                    'unit' => 'px',
-                    'isLinked' => false,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logos_title_color',
-            [
-                'label' => esc_html__('Title Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'logos_title_typography',
-                'selector' => '{{WRAPPER}} .customer-logos-title',
-            ]
-        );
-
-        $this->add_control(
-            'logos_subtitle_color',
-            [
-                'label' => esc_html__('Subtitle Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#cccccc',
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-subtitle' => 'color: {{VALUE}};',
-                ],
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'logos_subtitle_typography',
-                'selector' => '{{WRAPPER}} .customer-logos-subtitle',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logos_header_text_align',
-            [
-                'label' => esc_html__('Header Text Alignment', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'advanced-elements-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'advanced-elements-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'advanced-elements-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-header' => 'text-align: {{VALUE}};',
-                ],
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logos_header_margin',
-            [
-                'label' => esc_html__('Header Bottom Margin', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 40,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logos-header' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Logo Items Style
-        $this->add_control(
-            'logo_items_heading',
-            [
-                'label' => esc_html__('Logo Items', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_control(
-            'logo_background_color',
-            [
-                'label' => esc_html__('Logo Background', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'rgba(255, 255, 255, 0.1)',
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_border_color',
-            [
-                'label' => esc_html__('Logo Border Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'rgba(255, 255, 255, 0.2)',
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_border_radius',
-            [
-                'label' => esc_html__('Logo Border Radius', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'default' => [
-                    'top' => '8',
-                    'right' => '8',
-                    'bottom' => '8',
-                    'left' => '8',
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logo_padding',
-            [
-                'label' => esc_html__('Logo Padding', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'default' => [
-                    'top' => '20',
-                    'right' => '20',
-                    'bottom' => '20',
-                    'left' => '20',
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logo_height',
-            [
-                'label' => esc_html__('Logo Height', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 30,
-                        'max' => 200,
-                        'step' => 5,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 60,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item img' => 'height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_opacity',
-            [
-                'label' => esc_html__('Logo Opacity', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0.1,
-                        'max' => 1,
-                        'step' => 0.1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 0.7,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item img' => 'opacity: {{SIZE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_hover_opacity',
-            [
-                'label' => esc_html__('Logo Hover Opacity', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0.1,
-                        'max' => 1,
-                        'step' => 0.1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 1,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item:hover img' => 'opacity: {{SIZE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_transition',
-            [
-                'label' => esc_html__('Transition Duration (ms)', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 50,
-                    ],
-                ],
-                'default' => [
-                    'size' => 300,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .customer-logo-item' => 'transition: all {{SIZE}}ms ease;',
-                    '{{WRAPPER}} .customer-logo-item img' => 'transition: all {{SIZE}}ms ease;',
-                ],
-            ]
-        );
-
-        // Navigation Style
-        $this->add_control(
-            'navigation_heading',
-            [
-                'label' => esc_html__('Navigation', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'show_arrows' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'arrow_color',
-            [
-                'label' => esc_html__('Arrow Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
-                'selectors' => [
-                    '{{WRAPPER}} .slick-arrow' => 'color: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show_arrows' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'arrow_bg_color',
-            [
-                'label' => esc_html__('Arrow Background Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'rgba(255, 255, 255, 0.1)',
-                'selectors' => [
-                    '{{WRAPPER}} .slick-arrow' => 'background-color: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show_arrows' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dots_color',
-            [
-                'label' => esc_html__('Dots Color', 'advanced-elements-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
-                'selectors' => [
-                    '{{WRAPPER}} .slick-dots li button' => 'background-color: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show_dots' => 'yes',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
+    }
+
+    /**
+     * Get video embed URL from various video services
+     */
+    private function get_video_embed_url($url) {
+        if (empty($url)) {
+            return '';
+        }
+
+        // YouTube
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+
+        // Vimeo
+        if (preg_match('/vimeo\.com\/(\d+)/', $url, $matches)) {
+            return 'https://player.vimeo.com/video/' . $matches[1];
+        }
+
+        // Direct video file
+        if (preg_match('/\.(mp4|webm|ogg)$/i', $url)) {
+            return $url;
+        }
+
+        return $url;
+    }
+
+    /**
+     * Check if URL is a direct video file
+     */
+    private function is_direct_video($url) {
+        return preg_match('/\.(mp4|webm|ogg)$/i', $url);
     }
 
     /**
@@ -1719,6 +890,11 @@ class Consultancy_Grid_Widget extends Widget_Base {
         $circular_link = !empty($settings['circular_button_link']['url']) ? $settings['circular_button_link']['url'] : '#';
         $circular_target = !empty($settings['circular_button_link']['is_external']) ? ' target="_blank"' : '';
         $circular_nofollow = !empty($settings['circular_button_link']['nofollow']) ? ' rel="nofollow"' : '';
+        
+        // Primary feature link attributes
+        $primary_feature_link = !empty($settings['primary_feature_link']['url']) ? $settings['primary_feature_link']['url'] : '#';
+        $primary_feature_target = !empty($settings['primary_feature_link']['is_external']) ? ' target="_blank"' : '';
+        $primary_feature_nofollow = !empty($settings['primary_feature_link']['nofollow']) ? ' rel="nofollow"' : '';
         
         // Responsive settings
         $tablet_class = 'columns-' . $settings['features_columns_tablet'] . '-tablet';
@@ -1753,12 +929,25 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 </div>
                 
                 <div class="consultancy-main-content">
-                    <!-- Left Column: Image + Features Grid -->
+                    <!-- Left Column: Image/Feature + Features Grid -->
                     <div class="consultancy-left-column">
-                        <!-- Main Left Image -->
-                        <div class="consultancy-image-left animate-on-scroll" data-animation="animate__fadeInUp">
-                            <img src="<?php echo esc_url($settings['main_image_left']['url']); ?>" alt="Consultancy Team" />
-                        </div>
+                        <!-- Main Left Content -->
+                        <?php if ($settings['left_content_type'] === 'image') : ?>
+                            <!-- Image Content -->
+                            <div class="consultancy-image-left animate-on-scroll" data-animation="animate__fadeInUp">
+                                <img src="<?php echo esc_url($settings['main_image_left']['url']); ?>" alt="Consultancy Team" />
+                            </div>
+                        <?php else : ?>
+                            <!-- Feature Box Content -->
+                            <div class="primary-feature-box animate-on-scroll" data-animation="animate__fadeInUp">
+                                <a href="<?php echo esc_url($primary_feature_link); ?>" <?php echo $primary_feature_target . $primary_feature_nofollow; ?>>
+                                    <div class="primary-feature-icon">
+                                        <?php \Elementor\Icons_Manager::render_icon($settings['primary_feature_icon'], ['aria-hidden' => 'true']); ?>
+                                    </div>
+                                    <div class="primary-feature-title"><?php echo esc_html($settings['primary_feature_title']); ?></div>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                         
                         <!-- Features Grid -->
                         <div class="consultancy-features-grid <?php echo esc_attr($tablet_class . ' ' . $mobile_class); ?>">
@@ -1779,27 +968,12 @@ class Consultancy_Grid_Widget extends Widget_Base {
                         </div>
                     </div>
                     
-                    <!-- Right Column: Image with Button -->
+                    <!-- Right Column: Image/Video with Button -->
                     <div class="consultancy-right-column">
-                        <!-- Right Image with Circular Button -->
                         <div class="background-top-right-mask-container animate-on-scroll" data-animation="animate__fadeInUp">
                             <!-- Circle Button Container -->
-                            <?php 
-                                $video_url = !empty($settings['video_url']['url']) ? $settings['video_url']['url'] : '';
-                                $has_video = !empty($video_url);
-                                $video_aspect_ratio = !empty($settings['video_aspect_ratio']) ? esc_attr(trim($settings['video_aspect_ratio'])) : '169';
-                                $play_on_mobile = !empty($settings['video_play_on_mobile']) ? 'true' : 'false';
-                                
-                                if (!empty($settings['button_text'])) :
-                                    $button_onclick = $has_video ? 'onclick="openVideoPopup(\'' . esc_url($video_url) . '\', \'' . esc_attr($video_aspect_ratio) . '\', ' . $play_on_mobile . '); return false;"' : '';
-                            ?>
                             <div class="circle-button-container">
                                 <a href="<?php echo esc_url($circular_link); ?>" class="circle-button" 
-                                    <?php if (!empty($video_url)) : ?>
-                                        data-video-url="<?php echo esc_url($video_url); ?>"
-                                        data-aspect-ratio="<?php echo esc_attr($settings['video_aspect_ratio']); ?>"
-                                        data-play-mobile="<?php echo $settings['video_play_on_mobile'] === 'yes' ? 'true' : 'false'; ?>"
-                                    <?php endif; ?>
                                     <?php echo $circular_target . $circular_nofollow; ?>
                                 >
                                     <svg viewBox="0 0 280 280" class="text-ring">
@@ -1813,170 +987,175 @@ class Consultancy_Grid_Widget extends Widget_Base {
                                         </text>
                                     </svg>
                                     
-                                    <!-- Center Play Icon -->
+                                    <!-- Center Icon -->
                                     <div class="play-icon">
                                         <?php \Elementor\Icons_Manager::render_icon($settings['circular_button_icon'], ['aria-hidden' => 'true']); ?>
                                     </div>
                                 </a>
                             </div>
-                            <?php endif; ?> 
                             
-                            <div class="image-card">
-                                <img src="<?php echo esc_url($settings['main_image_right']['url']); ?>" alt="Engineering Design" />
-                            </div>
+                            <!-- Image or Video Content -->
+                            <?php if ($settings['right_content_type'] === 'image') : ?>
+                                <!-- Image Content -->
+                                <div class="image-card">
+                                    <img src="<?php echo esc_url($settings['main_image_right']['url']); ?>" alt="Engineering Design" />
+                                </div>
+                            <?php else : ?>
+                                <!-- Video Content -->
+                                <?php 
+                                    $video_url = !empty($settings['video_url']['url']) ? $settings['video_url']['url'] : '';
+                                    if (!empty($video_url)) :
+                                        $embed_url = $this->get_video_embed_url($video_url);
+                                        $is_direct = $this->is_direct_video($video_url);
+                                ?>
+                                    <div class="video-card">
+                                        <?php if ($is_direct) : ?>
+                                            <!-- Direct Video File -->
+                                            <video 
+                                                width="100%" 
+                                                height="auto"
+                                                <?php echo $settings['video_controls'] === 'yes' ? 'controls' : ''; ?>
+                                                <?php echo $settings['video_autoplay'] === 'yes' ? 'autoplay' : ''; ?>
+                                                <?php echo $settings['video_muted'] === 'yes' ? 'muted' : ''; ?>
+                                                loop
+                                                playsinline
+                                            >
+                                                <source src="<?php echo esc_url($embed_url); ?>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        <?php else : ?>
+                                            <!-- Embedded Video (YouTube/Vimeo) -->
+                                            <div class="video-embed-container">
+                                                <iframe 
+                                                    src="<?php echo esc_url($embed_url); ?>?<?php echo $settings['video_autoplay'] === 'yes' ? 'autoplay=1&' : ''; ?>mute=<?php echo $settings['video_muted'] === 'yes' ? '1' : '0'; ?>&controls=<?php echo $settings['video_controls'] === 'yes' ? '1' : '0'; ?>" 
+                                                    width="100%" 
+                                                    height="315"
+                                                    frameborder="0" 
+                                                    allowfullscreen
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                ></iframe>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Customer Logos Section -->
-            <?php if ('yes' === $settings['show_customer_logos'] && !empty($settings['customer_logos_list'])) : ?>
-                <div class="customer-logos-section animate-on-scroll" data-animation="animate__fadeInUp">
-                    <div class="customer-logos-content">
-                        <!-- Left Side: Title and Description -->
-                        <div class="customer-logos-left">
-                            <?php if (!empty($settings['logos_title'])) : ?>
-                                <h2 class="customer-logos-title"><?php echo esc_html($settings['logos_title']); ?></h2>
-                            <?php endif; ?>
-                            
-                            <?php if (!empty($settings['logos_subtitle'])) : ?>
-                                <p class="customer-logos-subtitle"><?php echo esc_html($settings['logos_subtitle']); ?></p>
-                            <?php endif; ?>
-                        </div>
-                        
-                        <!-- Right Side: Logos Slider -->
-                        <div class="customer-logos-right">
-                            <div class="customer-logos-slider" 
-                                data-autoplay="<?php echo esc_attr($settings['slider_autoplay']); ?>"
-                                data-autoplay-speed="<?php echo esc_attr($settings['slider_autoplay_speed']); ?>"
-                                data-speed="<?php echo esc_attr($settings['slider_speed']); ?>"
-                                data-infinite="<?php echo esc_attr($settings['slider_infinite']); ?>"
-                                data-slides-desktop="<?php echo esc_attr($settings['slides_to_show_desktop']); ?>"
-                                data-slides-tablet="<?php echo esc_attr($settings['slides_to_show_tablet']); ?>"
-                                data-slides-mobile="<?php echo esc_attr($settings['slides_to_show_mobile']); ?>"
-                                data-arrows="<?php echo esc_attr($settings['show_arrows']); ?>"
-                                data-dots="<?php echo esc_attr($settings['show_dots']); ?>">
-                                
-                                <?php foreach ($settings['customer_logos_list'] as $index => $logo) : 
-                                    $logo_link = !empty($logo['customer_link']['url']) ? $logo['customer_link']['url'] : '';
-                                    $logo_target = !empty($logo['customer_link']['is_external']) ? ' target="_blank"' : '';
-                                    $logo_nofollow = !empty($logo['customer_link']['nofollow']) ? ' rel="nofollow"' : '';
-                                    $has_link = !empty($logo_link);
-                                ?>
-                                    <div class="customer-logo-slide">
-                                        <div class="customer-logo-item">
-                                            <?php if ($has_link) : ?>
-                                                <a href="<?php echo esc_url($logo_link); ?>" <?php echo $logo_target . $logo_nofollow; ?>>
-                                            <?php endif; ?>
-                                            
-                                            <img src="<?php echo esc_url($logo['customer_logo']['url']); ?>" 
-                                                alt="<?php echo esc_attr($logo['customer_name']); ?>" 
-                                                title="<?php echo esc_attr($logo['customer_name']); ?>" />
-                                            
-                                            <?php if ($has_link) : ?>
-                                                </a>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Initialize Slick Slider -->
-                <script>
-                    jQuery(document).ready(function($) {
-                        // Check if Slick is available
-                        if (typeof $.fn.slick === 'undefined') {
-                            console.warn('Slick Slider is not loaded. Loading from CDN...');
-                            
-                            // Load Slick CSS
-                            $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">');
-                            $('head').append('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">');
-                            
-                            // Load Slick JS
-                            $.getScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', function() {
-                                // Initialize sliders after Slick is loaded
-                                initializeCustomerLogosSlider();
-                            });
-                        } else {
-                            // Slick is already loaded
-                            initializeCustomerLogosSlider();
-                        }
-                        
-                        function initializeCustomerLogosSlider() {
-                            const $slider = $('.customer-logos-slider');
-            
-                            if ($slider.length && typeof $.fn.slick !== 'undefined') {
-                                $slider.slick({
-                                    autoplay: $slider.data('autoplay') === 'yes',
-                                    autoplaySpeed: parseInt($slider.data('autoplay-speed')) || 3000,
-                                    speed: parseInt($slider.data('speed')) || 500,
-                                    infinite: $slider.data('infinite') === 'yes',
-                                    slidesToShow: parseFloat($slider.data('slides-desktop')) || 4,
-                                    slidesToScroll: 1,
-                                    arrows: $slider.data('arrows') === 'yes',
-                                    dots: $slider.data('dots') === 'yes',
-                                    variableWidth: false,
-                                    centerMode: false,
-                                    focusOnSelect: false,
-                                    rtl: false,
-                                    initialSlide: 0, // Start from first slide
-                                    prevArrow: '<button type="button" class="slick-prev slick-arrow"><i class="fa fa-chevron-left"></i></button>',
-                                    nextArrow: '<button type="button" class="slick-next slick-arrow"><i class="fa fa-chevron-right"></i></button>',
-                                    responsive: [
-                                        {
-                                            breakpoint: 1024,
-                                            settings: {
-                                                slidesToShow: parseFloat($slider.data('slides-tablet')) || 2,
-                                                slidesToScroll: 1,
-                                                initialSlide: 0
-                                            }
-                                        },
-                                        {
-                                            breakpoint: 768,
-                                            settings: {
-                                                slidesToShow: parseFloat($slider.data('slides-mobile')) || 1,
-                                                slidesToScroll: 1,
-                                                arrows: false,
-                                                initialSlide: 0
-                                            }
-                                        }
-                                    ]
-                                });
-                            }
-                        }
-                    });
-                </script>
-            <?php endif; ?>
-
             <?php if ('yes' === $settings['show_curve_divider']) : ?>
-                <?php $svg_url = !empty($settings['custom_curve_svg']['url'])  ? $settings['custom_curve_svg']['url'] : plugins_url('assets/images/curve-divider.svg', dirname(__FILE__)); ?>
+                <?php $svg_url = !empty($settings['custom_curve_svg']['url']) ? $settings['custom_curve_svg']['url'] : plugins_url('assets/images/curve-divider.svg', dirname(__FILE__)); ?>
                 <div class="consultancy-end-line animate-on-scroll" data-animation="animate__slideInUp">
                     <img src="<?php echo esc_url($svg_url); ?>" alt="Curve Divider">
                 </div>
             <?php endif; ?>
         </div>
-        <?php
-            // Add the video popup markup at the end
-            if ($has_video) :
-        ?>
-            <script>
-                jQuery(document).ready(function($) {
-                    $(".circle-button").on("click", function(e) {
-                        e.preventDefault();
-                        openVideoPopup("<?php echo esc_url($video_url); ?>", "'<?php echo $video_aspect_ratio; ?>", '<?php echo $play_on_mobile; ?>');
-                    });
-                });
-            </script>
-            <div id="video-popup-overlay" class="video-popup-overlay">
-                <div class="video-popup-container">
-                    <div class="video-popup-close">&times;</div>
-                    <div id="video-popup-content" class="video-popup-content"></div>
-                </div>
-            </div>
-        <?php endif; ?>
+
+        <style>
+            /* Primary Feature Box Styles */
+            .primary-feature-box {
+                background-color: var(--features-bg-color, #1c2432);
+                border-radius: var(--features-border-radius, 5px);
+                padding: 40px 20px;
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 200px;
+            }
+
+            .primary-feature-box:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(45, 123, 203, 0.15);
+            }
+
+            .primary-feature-box a {
+                text-decoration: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                justify-content: center;
+            }
+
+            .primary-feature-icon {
+                font-size: 48px;
+                margin-bottom: 15px;
+                color: var(--features-icon-color, #2d7bcb);
+            }
+
+            .primary-feature-icon i,
+            .primary-feature-icon svg {
+                font-size: 48px;
+                width: 48px;
+                height: 48px;
+            }
+
+            .primary-feature-title {
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--features-text-color, #ffffff);
+                margin: 0;
+                text-align: center;
+            }
+
+            /* Video Styles */
+            .video-card {
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .video-embed-container {
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            }
+
+            .video-embed-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .video-card video {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .primary-feature-box {
+                    min-height: 150px;
+                    padding: 30px 15px;
+                }
+
+                .primary-feature-icon {
+                    font-size: 36px;
+                }
+
+                .primary-feature-icon i,
+                .primary-feature-icon svg {
+                    font-size: 36px;
+                    width: 36px;
+                    height: 36px;
+                }
+
+                .primary-feature-title {
+                    font-size: 16px;
+                }
+            }
+        </style>
         <?php
     }
 }
