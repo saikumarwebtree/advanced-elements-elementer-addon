@@ -239,8 +239,8 @@ class Consultancy_Grid_Widget extends Widget_Base {
             [
                 'label' => esc_html__('Video URL', 'advanced-elements-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://www.youtube.com/watch?v=VIDEO_ID', 'advanced-elements-elementor'),
-                'description' => esc_html__('Enter YouTube, Vimeo, or direct video URL', 'advanced-elements-elementor'),
+                'placeholder' => esc_html__('https://www.youtube.com/watch?v=VIDEO_ID or https://vimeo.com/VIDEO_ID', 'advanced-elements-elementor'),
+                'description' => esc_html__('Enter YouTube, Vimeo, or direct video URL. Supports all YouTube and Vimeo URL formats.', 'advanced-elements-elementor'),
                 'default' => [
                     'url' => '',
                 ],
@@ -845,19 +845,63 @@ class Consultancy_Grid_Widget extends Widget_Base {
     /**
      * Get video embed URL from various video services
      */
-    private function get_video_embed_url($url) {
+    private function get_video_embed_url($url, $settings = []) {
         if (empty($url)) {
             return '';
         }
 
-        // YouTube
-        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $url, $matches)) {
-            return 'https://www.youtube.com/embed/' . $matches[1];
+        // YouTube URL patterns
+        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $url, $matches)) {
+            $video_id = $matches[1];
+            $embed_url = 'https://www.youtube.com/embed/' . $video_id;
+            
+            // Add YouTube parameters
+            $params = [];
+            if (!empty($settings['video_autoplay']) && $settings['video_autoplay'] === 'yes') {
+                $params[] = 'autoplay=1';
+            }
+            if (!empty($settings['video_muted']) && $settings['video_muted'] === 'yes') {
+                $params[] = 'mute=1';
+            }
+            if (!empty($settings['video_controls']) && $settings['video_controls'] !== 'yes') {
+                $params[] = 'controls=0';
+            }
+            $params[] = 'rel=0'; // Don't show related videos
+            $params[] = 'modestbranding=1'; // Minimal YouTube branding
+            
+            if (!empty($params)) {
+                $embed_url .= '?' . implode('&', $params);
+            }
+            
+            return $embed_url;
         }
 
-        // Vimeo
-        if (preg_match('/vimeo\.com\/(\d+)/', $url, $matches)) {
-            return 'https://player.vimeo.com/video/' . $matches[1];
+        // Vimeo URL patterns - supports various Vimeo URL formats
+        if (preg_match('/(?:vimeo\.com\/(?:channels\/[^\/]+\/|groups\/[^\/]+\/videos\/|album\/\d+\/video\/|video\/|))(\d+)(?:$|\/|\?)/', $url, $matches)) {
+            $video_id = $matches[1];
+            $embed_url = 'https://player.vimeo.com/video/' . $video_id;
+            
+            // Add Vimeo parameters
+            $params = [];
+            if (!empty($settings['video_autoplay']) && $settings['video_autoplay'] === 'yes') {
+                $params[] = 'autoplay=1';
+            }
+            if (!empty($settings['video_muted']) && $settings['video_muted'] === 'yes') {
+                $params[] = 'muted=1';
+            }
+            if (!empty($settings['video_controls']) && $settings['video_controls'] !== 'yes') {
+                $params[] = 'controls=0';
+            }
+            $params[] = 'title=0'; // Hide title
+            $params[] = 'byline=0'; // Hide byline
+            $params[] = 'portrait=0'; // Hide portrait
+            $params[] = 'dnt=1'; // Do not track
+            
+            if (!empty($params)) {
+                $embed_url .= '?' . implode('&', $params);
+            }
+            
+            return $embed_url;
         }
 
         // Direct video file
@@ -866,6 +910,15 @@ class Consultancy_Grid_Widget extends Widget_Base {
         }
 
         return $url;
+    }
+
+    /**
+     * Check if URL is from a video service (YouTube or Vimeo)
+     */
+    private function is_video_service($url) {
+        return (strpos($url, 'youtube.com') !== false || 
+                strpos($url, 'youtu.be') !== false || 
+                strpos($url, 'vimeo.com') !== false);
     }
 
     /**
@@ -939,7 +992,7 @@ class Consultancy_Grid_Widget extends Widget_Base {
                             </div>
                         <?php else : ?>
                             <!-- Feature Box Content -->
-                            <div class="primary-feature-box animate-on-scroll" data-animation="animate__fadeInUp">
+                            <div class="primary-feature-box feature-box animate-on-scroll" data-animation="animate__fadeInUp">
                                 <a href="<?php echo esc_url($primary_feature_link); ?>" <?php echo $primary_feature_target . $primary_feature_nofollow; ?>>
                                     <div class="primary-feature-icon">
                                         <?php \Elementor\Icons_Manager::render_icon($settings['primary_feature_icon'], ['aria-hidden' => 'true']); ?>
@@ -1005,10 +1058,11 @@ class Consultancy_Grid_Widget extends Widget_Base {
                                 <?php 
                                     $video_url = !empty($settings['video_url']['url']) ? $settings['video_url']['url'] : '';
                                     if (!empty($video_url)) :
-                                        $embed_url = $this->get_video_embed_url($video_url);
+                                        $embed_url = $this->get_video_embed_url($video_url, $settings);
                                         $is_direct = $this->is_direct_video($video_url);
+                                        $is_video_service = $this->is_video_service($video_url);
                                 ?>
-                                    <div class="video-card">
+                                    <div class="video-card image-card">
                                         <?php if ($is_direct) : ?>
                                             <!-- Direct Video File -->
                                             <video 
@@ -1023,17 +1077,26 @@ class Consultancy_Grid_Widget extends Widget_Base {
                                                 <source src="<?php echo esc_url($embed_url); ?>" type="video/mp4">
                                                 Your browser does not support the video tag.
                                             </video>
-                                        <?php else : ?>
+                                        <?php elseif ($is_video_service) : ?>
                                             <!-- Embedded Video (YouTube/Vimeo) -->
                                             <div class="video-embed-container">
                                                 <iframe 
-                                                    src="<?php echo esc_url($embed_url); ?>?<?php echo $settings['video_autoplay'] === 'yes' ? 'autoplay=1&' : ''; ?>mute=<?php echo $settings['video_muted'] === 'yes' ? '1' : '0'; ?>&controls=<?php echo $settings['video_controls'] === 'yes' ? '1' : '0'; ?>" 
+                                                    src="<?php echo esc_url($embed_url); ?>" 
                                                     width="100%" 
                                                     height="315"
                                                     frameborder="0" 
                                                     allowfullscreen
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerpolicy="strict-origin-when-cross-origin"
                                                 ></iframe>
+                                            </div>
+                                        <?php else : ?>
+                                            <!-- Fallback for other URLs -->
+                                            <div class="video-fallback">
+                                                <p><?php echo esc_html__('Unsupported video format. Please use YouTube, Vimeo, or direct video file URLs.', 'advanced-elements-elementor'); ?></p>
+                                                <a href="<?php echo esc_url($video_url); ?>" target="_blank" rel="noopener">
+                                                    <?php echo esc_html__('Open Video Link', 'advanced-elements-elementor'); ?>
+                                                </a>
                                             </div>
                                         <?php endif; ?>
                                     </div>
@@ -1125,12 +1188,39 @@ class Consultancy_Grid_Widget extends Widget_Base {
                 left: 0;
                 width: 100%;
                 height: 100%;
+                border-radius: 8px;
             }
 
             .video-card video {
-                width: 100%;
-                height: auto;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover; /* This ensures the video covers the entire container while maintaining aspect ratio */
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .video-fallback {
+                padding: 40px 20px;
+                text-align: center;
+                background-color: rgba(255, 255, 255, 0.1);
                 border-radius: 8px;
+                color: #ffffff;
+            }
+
+            .video-fallback p {
+                margin-bottom: 15px;
+                color: #cccccc;
+            }
+
+            .video-fallback a {
+                color: #2d7bcb;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .video-fallback a:hover {
+                text-decoration: underline;
             }
 
             /* Responsive adjustments */

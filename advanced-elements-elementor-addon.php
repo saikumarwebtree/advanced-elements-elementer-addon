@@ -190,6 +190,8 @@ final class Advanced_Elements_Elementor_Addon {
         require_once(__DIR__ . '/widgets/contact-widget.php');
         require_once(__DIR__ . '/widgets/promotional-slider.php');
         require_once(__DIR__ . '/widgets/separator-widget.php');
+        require_once(__DIR__ . '/widgets/case-study-widget.php');
+        require_once(__DIR__ . '/widgets/cta-cards-widget.php');
         // require_once(__DIR__ . '/widgets/world-heatmap-widget.php');
         // Register widgets
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Platform_Card_Widget());
@@ -207,6 +209,8 @@ final class Advanced_Elements_Elementor_Addon {
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Contact_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Promo_Slider_Widget());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Custom_Separator_Widget());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\Case_Study_Tabs_Widget());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\CTA_Cards_Widget());
         // \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Advanced_Elements\Widgets\World_HeatMap_Widget());
     }
 
@@ -235,6 +239,8 @@ final class Advanced_Elements_Elementor_Addon {
         wp_register_style('advanced-elements-contact', plugins_url('assets/css/contact.css', __FILE__));
         wp_register_style('advanced-elements-flowthermolab-footer', plugins_url('assets/css/flowthermolab-footer.css', __FILE__));
         wp_register_style('advanced-elements-promotional-slider', plugins_url('assets/css/promotional-slider.css', __FILE__));
+        wp_register_style('advanced-elements-case-study', plugins_url('assets/css/case-study.css', __FILE__));
+        wp_register_style('advanced-elements-cta-cards', plugins_url('assets/css/cta-cards.css', __FILE__));
         // wp_register_style('advanced-elements-world-heatmap', plugins_url('assets/css/world-heatmap.css', __FILE__));
         
 
@@ -259,6 +265,8 @@ final class Advanced_Elements_Elementor_Addon {
         wp_enqueue_style('advanced-elements-contact');
         wp_enqueue_style('advanced-elements-flowthermolab-footer');
         wp_enqueue_style('advanced-elements-promotional-slider');
+        wp_enqueue_style('advanced-elements-case-study');
+        wp_enqueue_style('advanced-elements-cta-cards');
         // wp_enqueue_style('advanced-elements-world-heatmap');
     }
 

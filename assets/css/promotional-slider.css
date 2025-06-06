@@ -10,7 +10,8 @@
 .promo-slider {
     position: relative;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto!important;
+    padding-bottom: 40px;
     overflow: hidden;
 }
 
@@ -34,7 +35,7 @@
 }
 
 .promo-slide:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
     /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); */
 }
 
@@ -54,7 +55,7 @@
 .right-section {
     flex: 1;
     /* background: linear-gradient(135deg, #4a89dc 0%, #667eea 100%); */
-    padding: 30px 40px;
+    padding: 40px 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,9 +75,9 @@
     color: #173D7A!important;
     font-size: 96px!important;
     font-weight: 800;
-    line-height: 1!important;
+    line-height: 0.6!important;
     color: #0D1B32;
-    margin: 0 0 5px 0;
+    margin: 0 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -230,18 +231,25 @@
     transition: all 0.3s ease;
 }
 
-.promo-slider .slick-prev:hover,
+/*.promo-slider .slick-prev:hover,
 .promo-slider .slick-next:hover {
     background-color: #ffffff;
     transform: scale(1.1);
-}
+}*/
 
 .promo-slider .slick-prev {
-    left: 30px;
+    right: 60px;
+    top: unset;
+    bottom: -10px;
+    left: unset;
+
 }
 
 .promo-slider .slick-next {
-    right: 30px;
+    right: 0px;
+    top: unset;
+    bottom: -10px;
+    left: unset;
 }
 
 .promo-slider .slick-prev:before,

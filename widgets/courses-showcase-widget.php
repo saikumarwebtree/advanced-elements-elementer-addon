@@ -1750,6 +1750,9 @@ class Courses_Showcase_Widget extends Widget_Base
     /**
      * Render a LearnDash course card
      */
+    /**
+ * Render a LearnDash course card
+ */
     private function render_course_card($course, $settings)
     {
         if (!defined('LEARNDASH_VERSION')) {
@@ -1766,6 +1769,42 @@ class Courses_Showcase_Widget extends Widget_Base
 
         // Get course duration - depends on how you store it
         $duration = get_post_meta($course_id, '_ld_course_duration', true) ?: '';
+
+        // Get rating from course meta (you can customize these meta keys as needed)
+        $rating = get_post_meta($course_id, '_course_rating', true) ?: 0;
+        $rating_count = get_post_meta($course_id, '_course_rating_count', true) ?: 0;
+        
+        // Convert rating to float for proper calculation
+        $rating = floatval($rating);
+        $rating_count = intval($rating_count);
+
+        // If no custom rating is set, you can use a default or calculate from comments/reviews
+        if ($rating == 0) {
+            $rating = 5;
+            // Option 1: Use a default rating (uncomment if needed)
+            // $rating = 4.5;
+            // $rating_count = 125;
+            
+            // Option 2: Calculate from WordPress comments (uncomment if you want to use comments as reviews)
+            /*
+            $comments = get_comments(array(
+                'post_id' => $course_id,
+                'status' => 'approve',
+                'type' => 'comment'
+            ));
+            $rating_count = count($comments);
+            if ($rating_count > 0) {
+                $total_rating = 0;
+                foreach ($comments as $comment) {
+                    $comment_rating = get_comment_meta($comment->comment_ID, 'rating', true);
+                    if ($comment_rating) {
+                        $total_rating += floatval($comment_rating);
+                    }
+                }
+                $rating = $total_rating / $rating_count;
+            }
+            */
+        }
 
         // Price - for LearnDash courses if you have pricing enabled
         $price = '';
@@ -1812,12 +1851,34 @@ class Courses_Showcase_Widget extends Widget_Base
             </div>
 
             <div class="course-card-content">
+                <?php if ('yes' === $settings['show_rating'] && $rating > 0): ?>
+                    <div class="course-card-rating">
+                        <?php
+                        // Display stars
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= floor($rating)) {
+                                echo '<i class="fas fa-star"></i>';
+                            } elseif ($i - 0.5 <= $rating) {
+                                echo '<i class="fas fa-star-half-alt"></i>';
+                            } else {
+                                echo '<i class="far fa-star"></i>';
+                            }
+                        }
+
+                        // Display rating count
+                        if ($rating_count > 0) {
+                            echo '(' . number_format_i18n($rating_count) . ')';
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
+
                 <h3 class="course-card-title">
                     <a href="<?php echo esc_url($course_permalink); ?>"><?php echo esc_html($course_title); ?></a>
                 </h3>
 
                 <?php if ('yes' === $settings['show_product_meta']): ?>
-                    <div class="course-card-meta">
+                    <div class="course-card-meta" style="display: none;">
                         <span class="course-card-lessons">
                             <i class="fas fa-book"></i> <?php echo esc_html($settings['lesson_text']); ?>
                             <?php echo esc_html($lessons_count); ?>

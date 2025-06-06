@@ -8,7 +8,7 @@
 
 .consultancy-grid-content {
     max-width: 1200px;
-    margin: 0 auto 60px;
+    margin: 0 auto 120px;
 }
 
 /* Header Styles */
@@ -834,13 +834,13 @@ body.popup-open {
     }
     
     .circle-button-container {
-        right: 10px;
-        top: 10px;
+        right: 0px;
+        top: 0px;
     }
     
     .circle-button-container .circle-button {
-        width: 80px;
-        height: 80px;
+        width: 80px!important;
+        height: 80px!important;
     }
     
     .circle-button-container .circle-button .text-ring {
@@ -874,8 +874,15 @@ body.popup-open {
         -webkit-mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
         -o-mask-image: radial-gradient(circle at calc(100% - 50px) 50px, transparent 60px, black 60px);
     }
+    .background-top-right-mask-container .video-card.image-card{
+        mask-image: radial-gradient(circle at calc(100% - 38px) 38px, transparent 60px, black 60px);
+        -ms-mask-image: radial-gradient(circle at calc(100% - 38px) 38px, transparent 60px, black 60px);
+        -moz-mask-image: radial-gradient(circle at calc(100% - 38px) 38px, transparent 60px, black 60px);
+        -webkit-mask-image: radial-gradient(circle at calc(100% - 38px) 38px, transparent 60px, black 60px);
+        -o-mask-image: radial-gradient(circle at calc(100% - 38px) 38px, transparent 60px, black 60px);
+    }
     .consultancy-subtitle{ font-size: 22px; }
-    .consultancy-grid-container{ padding: 30px 20px 0!important; }
+    .consultancy-grid-container{ padding: 30px 20px 60px!important; }
     .consultancy-header{ text-align: center; }
     .consultancy-header-right{ width: 100%; }
     .customer-logos-section,
